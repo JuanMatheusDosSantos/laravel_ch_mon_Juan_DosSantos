@@ -1,0 +1,119 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+    <!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href={{asset("css/carouselHome.css")}}>
+        <link rel="stylesheet" href={{asset("css/general.css")}}>
+    </head>
+
+    <body>
+        <header class=" d-flex border-bottom">
+            <div class="container d-flex justify-content-between align-items-center py-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div>
+                        <a href="index.htm" class="text-decoration-none text-danger">
+                            <h3><strong> change.org</strong></h3>
+                        </a>
+                    </div>
+                    <div class="d-lg-flex gap-3 d-none">
+                        <a href="" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                        <a href="" class="text-decoration-none text-black"><strong> Programa de socios/as</strong></a>
+                        <a href="" class="text-decoration-none text-black"><strong><img src="img/search.svg" alt=""
+                                                                                        class="me-1">Buscar</strong></a>
+                    </div>
+                </div>
+                <div class="d-flex my-auto gap-3 gap-lg-4">
+                    <a href="iniciopeticion.htm" class="text-decoration-none text-black border border-dark p-2 rounded"><strong>Inicia
+                            una
+                            peticion</strong></a>
+                    <a href="" class="text-decoration-none text-black my-auto"><strong>Entrar</strong></a>
+                </div>
+                <div class="d-flex d-md-none">
+                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img src="img/search.svg"
+                                                                                              alt="" class="me-1"></a>
+                    <div class="btn-group d-lg-none">
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            menu
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end text-center bg-transparent">
+                            <li>
+                                <a href="" class="text-decoration-none text-black mx-auto"> Mis
+                                    peticiones</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-decoration-none text-black"> Buscar</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-decoration-none text-black"> Entra o registrate</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+@yield("content")
+        <footer class="px-3 pt-5 border-top d-flex flex-column align-items-center">
+            <div class="container w-100">
+                <div class="d-flex w-100 gap-4 justify-content-between flex-wrap">
+                    <div class="d-flex flex-column gap-2">
+                        <h2 class="text-16">Acerca de</h2>
+                        <p class="text-16"><a href="" class="text-decoration-none text-black">Sobre Change.org</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Impacto</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Empleo</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Equipo</a></p>
+                    </div>
+                    <div class="d-flex flex-column gap-2 ">
+                        <h2 class="text-16">Comunidad</h2>
+                        <p><a href="" class="text-decoration-none text-black">Prensa</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Normas de la comunidad</a></p>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                        <h2 class="text-16">Ayuda</h2>
+                        <p><a href="" class="text-decoration-none text-black">Ayuda</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Guias</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Privacidad</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Terminos</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Declaracion de accesibilidad</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Politica de cookies</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Gestionar cookies</a></p>
+                    </div>
+                    <div class="d-flex flex-column gap-2 ">
+                        <h2 class="text-16">Redes sociales</h2>
+                        <p><a href="" class="text-decoration-none text-black">X</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Facebook</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Instagram</a></p>
+                        <p><a href="" class="text-decoration-none text-black">Tiktok</a></p>
+                    </div>
+                </div>
+                <hr class="w-100 my-5">
+                <div class="d-flex gap-2 my-5 justify-content-between">
+                    <div>
+                        <p><strong>© 2025, Change.org, PBC</strong></p>
+                        <p>Esta web está protegida por reCAPTCHA y por Google Política de privacidad y Normas de
+                            uso.</p>
+                    </div>
+                    <div class="m-auto d-flex">
+                        <select name="idioma" id="idioma" class="form-select form-select-lg mb-3 border-dark">
+                            <option value="spain">Español(españa)</option>
+                            <option value="english">English (Uk)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+</html>
