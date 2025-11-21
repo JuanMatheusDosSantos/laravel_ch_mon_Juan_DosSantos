@@ -2,7 +2,7 @@
 @section('content')
     <div>
         <div class="position-relative">
-            <img src={{asset("img/background-home.svg")}} alt="" class="position-absolute start-25 w-50" style="z-index: -10;">
+            <img src={{asset("assets/img/background-home.svg")}} alt="" class="position-absolute start-25 w-50" style="z-index: -10;">
             <div class="position-relative pt-5 container ">
                 <div class="mt-3 pt-5 align-content-center text-center">
                     <h1>El cambio comienza aqui.</h1>
@@ -17,7 +17,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active " data-bs-interval="10000">
                         <a href="" class="d-flex justify-content-center">
-                            <img src={{asset("img/foto1Home.jpg")}} alt="" class="rounded-pop imgs w-25">
+                            <img src={{asset("assets/img/foto1Home.jpg")}} alt="" class="rounded-pop imgs w-25">
                             <div class="carousel-caption d-none d-md-block text-dark bg-gray w-15 mx-auto rounded-5 ">
                                 <h5>¡Victoria!</h5>
                                 <p>157.929 firmas.</p>
@@ -28,7 +28,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item" data-bs-interval="5000">
                         <a href="" class="d-flex justify-content-center">
-                            <img src={{asset("img/foto2Home.webp")}} alt="" class="rounded-pop imgs w-25">
+                            <img src={{asset("assets/img/foto2Home.webp")}} alt="" class="rounded-pop imgs w-25">
                             <div class="carousel-caption d-none d-md-block text-dark bg-gray w-15 mx-auto rounded-5 ">
                                 <h5>¡Victoria!</h5>
                                 <p>157.929 firmas.</p>
@@ -39,7 +39,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item" data-bs-interval="5000">
                         <a href="" class="d-flex justify-content-center">
-                            <img src={{asset("img/foto3Home.webp")}} alt="" class="rounded-pop imgs w-25">
+                            <img src={{asset("assets/img/foto3Home.webp")}} alt="" class="rounded-pop imgs w-25">
                             <div class="carousel-caption d-none d-md-block text-dark bg-gray w-15 mx-auto rounded-5 ">
                                 <h5>¡Victoria!</h5>
                                 <p>9141.336 firmas.</p>
@@ -50,7 +50,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item" data-bs-interval="5000">
                         <a href="" class="d-flex justify-content-center">
-                            <img src={{asset("img/foto4Home.webp")}} alt="" class="rounded-pop imgs w-25">
+                            <img src={{asset("assets/img/foto4Home.webp")}} alt="" class="rounded-pop imgs w-25">
                             <div class="carousel-caption d-none d-md-block text-dark bg-gray w-15 mx-auto rounded-5 ">
                                 <h5>En tendencia</h5>
                                 <p>192.219 firmas.</p>
@@ -61,7 +61,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item" data-bs-interval="5000">
                         <a href="" class="d-flex justify-content-center">
-                            <img src={{asset("img/foto5Home.webp")}} alt="" class="rounded-pop imgs w-25">
+                            <img src={{asset("assets/img/foto5Home.webp")}} alt="" class="rounded-pop imgs w-25">
                             <div class="carousel-caption d-none d-md-block text-dark bg-gray w-15 mx-auto rounded-5 ">
                                 <h5>¡Victoria!</h5>
                                 <p>162.845 firmas.</p>
@@ -151,45 +151,45 @@
             </div>
             <div class="d-flex justify-content-between my-2">
                 <div class="col-3 border shadow me-3">
-                    <img src={{asset("img/foto6Home.webp")}} alt="" class="w-100">
+                    <img src={{asset("assets/img/foto6Home.webp")}} alt="" class="w-100">
                     <div>
                         <h6 class="my-2"><strong>Mi hija se suicidó con 15 años. El bullying NO es cosa de niñ@s > ¡LEY
                                 ACOSO ESCOLAR YA!</strong></h6>
                         <div class="d-flex">
-                            <img src={{asset("img/pencil.png")}} alt="" style="width: 20px;">
+                            <img src={{asset("assets/img/pencil.png")}} alt="" style="width: 20px;">
                             <p class="text-primary m-0"><strong>260.613 firmas</strong></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3 border shadow me-3">
-                    <img src={{asset("img/foto7Home.webp")}} alt="" class="w-100">
+                    <img src={{asset("assets/img/foto7Home.webp")}} alt="" class="w-100">
                     <div>
                         <h6 class="my-2"><strong>Mi hija se suicidó con 15 años. El bullying NO es cosa de niñ@s > ¡LEY
                                 ACOSO ESCOLAR YA!</strong></h6>
                         <div class="d-flex">
-                            <img src={{asset("img/pencil.png")}} alt="" style="width: 20px;">
+                            <img src={{asset("assets/img/pencil.png")}} alt="" style="width: 20px;">
                             <p class="text-primary m-0"><strong>58.554 firmas</strong></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3 border shadow me-3">
-                    <img src={{asset("img/foto8Home.webp")}} alt="" class="w-100">
+                    <img src={{asset("assets/img/foto8Home.webp")}} alt="" class="w-100">
                     <div>
                         <h6 class="my-2"><strong>Mi hija se suicidó con 15 años. El bullying NO es cosa de niñ@s > ¡LEY
                                 ACOSO ESCOLAR YA!</strong></h6>
                         <div class="d-flex">
-                            <img src={{asset("img/pencil.png")}} alt="" style="width: 20px;">
+                            <img src={{asset("assets/img/pencil.png")}} alt="" style="width: 20px;">
                             <p class="text-primary m-0"><strong>11.485 firmas</strong></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3 border shadow me-3">
-                    <img src={{asset("img/foto9Home.webp")}} alt="" class="w-100">
+                    <img src={{asset("assets/img/foto9Home.webp")}} alt="" class="w-100">
                     <div>
                         <h6 class="my-2"><strong>Mi hija se suicidó con 15 años. El bullying NO es cosa de niñ@s > ¡LEY
                                 ACOSO ESCOLAR YA!</strong></h6>
                         <div class="d-flex">
-                            <img src={{asset("img/pencil.png")}} alt="" style="width: 20px;">
+                            <img src={{asset("assets/img/pencil.png")}} alt="" style="width: 20px;">
                             <p class="text-primary m-0"><strong>31.8424 firmas</strong></p>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                     <button type="button" class="btn btn-outline-dark">Contribuir</button>
                 </div>
                 <div class="w-50 ">
-                    <img src={{asset("img/foto10Home.webp")}} alt="" class="w-100">
+                    <img src={{asset("assets/img/foto10Home.webp")}} alt="" class="w-100">
                 </div>
             </div>
         </div>

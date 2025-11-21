@@ -9,13 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+              crossorigin="anonymous">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
-        <link rel="stylesheet" href={{asset("css/carouselHome.css")}}>
-        <link rel="stylesheet" href={{asset("css/general.css")}}>
+        <link rel="stylesheet" href={{asset("assets/css/carouselHome.css")}}>
+        <link rel="stylesheet" href={{asset("assets/css/general.css")}}>
     </head>
 
     <body>
@@ -30,7 +31,7 @@
                     <div class="d-lg-flex gap-3 d-none">
                         <a href="" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
                         <a href="" class="text-decoration-none text-black"><strong> Programa de socios/as</strong></a>
-                        <a href="" class="text-decoration-none text-black"><strong><img src="img/search.svg" alt=""
+                        <a href="" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg" alt=""
                                                                                         class="me-1">Buscar</strong></a>
                     </div>
                 </div>
@@ -41,7 +42,7 @@
                     <a href="" class="text-decoration-none text-black my-auto"><strong>Entrar</strong></a>
                 </div>
                 <div class="d-flex d-md-none">
-                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img src="img/search.svg"
+                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img src="assets/img/search.svg"
                                                                                               alt="" class="me-1"></a>
                     <div class="btn-group d-lg-none">
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="dropdown"
@@ -64,7 +65,7 @@
                 </div>
             </div>
         </header>
-@yield("content")
+        @yield("content")
         <footer class="px-3 pt-5 border-top d-flex flex-column align-items-center">
             <div class="container w-100">
                 <div class="d-flex w-100 gap-4 justify-content-between flex-wrap">

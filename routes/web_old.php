@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [PagesController::class, "home"])->name("home");
 Route::get("/users/firmas", [UserController::class, "peticionesFirmadas"])->middleware("auth");
 
-Route::controller(PetitionController::class)->group(function () {
+Route::controller(PetititionController::class)->group(function () {
     Route::get("petitions/index", "index")->name("peticiones.index");
     Route::get("mypetitions", "listMine")->name("peticiones.mine");
     Route::get("petitions", "signedpetitions")->name("peticiones.peticionesfirmadas");
