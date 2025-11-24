@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->nullable();
             $table->string('file_path')->nullable();
-            $table->foreignId('peticione_id')->references('id')->on('peticiones')
+            $table->foreignId('petition_id')->references('id')->on('petitions')
                 ->onDelete('cascade');
             $table->timestamps();
 

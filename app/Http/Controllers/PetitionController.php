@@ -12,4 +12,9 @@ class PetitionController extends Controller
         $petitions=Petition::all();
         return view("petitions.index",compact("petitions"));
     }
+    function show($id)
+    {
+        $petition=Petition::findOrFail($id);
+        return view("petitions.show",compact("petition"));
+    }
 }
