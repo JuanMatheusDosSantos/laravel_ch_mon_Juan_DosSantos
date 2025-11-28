@@ -29,9 +29,13 @@
                         </a>
                     </div>
                     <div class="d-lg-flex gap-3 d-none">
-                        <a href="" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                        @if(Auth::check())
+                        <a href="{{route("petitions.mine")}}" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                        @else
+                            <a href="{{route("login")}}" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                        @endif
                         <a href="" class="text-decoration-none text-black"><strong> Programa de socios/as</strong></a>
-                        <a href="" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg"
+                        <a href="{{route("petitions.index")}}" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg"
                                                                                         alt=""
                                                                                         class="me-1">Buscar</strong></a>
                     </div>
@@ -67,7 +71,7 @@
                     @endif
                 </div>
                 <div class="d-flex d-md-none">
-                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img
+                    <a href="{{route("petitions.index")}}" class="text-decoration-none text-black d-none d-sm-block"><img
                             src="assets/img/search.svg"
                             alt="" class="me-1"></a>
                     <div class="btn-group d-lg-none">
@@ -84,7 +88,7 @@
                                 <li>{{__("Profile")}}</li>
                             @else
                                 <li>
-                                    <a href="" class="text-decoration-none text-black"> Buscar</a>
+                                    <a href="{{route("petitions.index")}}" class="text-decoration-none text-black"> Buscar</a>
                                 </li>
                                 <li>
                                     <a href="" class="text-decoration-none text-black"> Entra o registrate</a>

@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Petition extends Model
 {
     protected $fillable = [
-        'titulo',
-        'descripcion',
-        'destinatario',
-        'firmantes',
-        'estado'
-    ];
-    protected $hidden = [
+        'title',
+        'description',
+        'destinatary',
+        'signers',
+        'status',
         "user_id",
         "category_id"
+    ];
+    protected $hidden = [
+
     ];
 
     function category()

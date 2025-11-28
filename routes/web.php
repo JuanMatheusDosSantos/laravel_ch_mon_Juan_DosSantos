@@ -23,9 +23,9 @@ Route::get("/", [PagesController::class, "home"])->name("home");
 Route::get("/users/firmas", [UserController::class, "peticionesFirmadas"])->middleware("auth");
 
 Route::controller(PetitionController::class)->group(function () {
-    Route::get("petitions/index", "index")->name("peticiones.index");
-    Route::get("mypetitions", "listMine")->name("peticiones.mine");
-    Route::get("petitions", "signedpetitions")->name("peticiones.peticionesfirmadas");
+    Route::get("petitions/index", "index")->name("petitions.index");
+    Route::get("mypetitions", "listMine")->name("petitions.mine");
+    Route::get("petitions", "signedpetitions")->name("petitions.peticionesfirmadas");
 
     Route::get("petitions/{id}", "show")->name("peticiones.show");
     Route::get("petitions/add", "create")->name("peticiones.create");
