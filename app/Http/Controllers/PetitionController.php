@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Petition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,29 @@ class PetitionController extends Controller
     function listMine()
     {
         $user=Auth::id();
-        $petition=Petition::where("user_id",$user);
-        return view("petitions.mine",compact("petition"));
+        $petitions=Petition::where("user_id",$user)->get();
+        return view("petitions.mine",compact("petitions"));
+    }
+    function store(Request $request)
+    {
+        $this->validate($request,[
+            "title"=>"required|max:255"
+    ]);
+        try {
+            $category=Category::findOrFail($input["category"]);
+            $user=Auth::user();
+            $petition=New Petition($input);
+            $petition->category()->associate($category);
+            $petition->user()->associate($user);
+            $petition->signers=0;
+            $petition->status=0;
+            $res=$petition->save();
+            if ($res){
+                return ;
+            }
+
+        }catch (\Exception $e){
+
+        }
     }
 }

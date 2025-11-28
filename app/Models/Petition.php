@@ -33,4 +33,9 @@ class Petition extends Model
     {
         return $this->belongsToMany(User::class,"petition_user");
     }
+
+    function file()
+    {
+        return $this->hasOne(File::class);
+    }
 }

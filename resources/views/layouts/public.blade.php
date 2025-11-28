@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>@yield('title', 'Título Predeterminado')</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
               crossorigin="anonymous">
@@ -20,11 +20,11 @@
     </head>
 
     <body>
-        <header class=" d-flex border-bottom">
+        <header class="d-flex border-bottom">
             <div class="container d-flex justify-content-between align-items-center py-3">
                 <div class="d-flex align-items-center gap-3">
                     <div>
-                        <a href="index.htm" class="text-decoration-none text-danger">
+                        <a href="{{route("home")}}" class="text-decoration-none text-danger">
                             <h3><strong> change.org</strong></h3>
                         </a>
                     </div>
@@ -52,13 +52,17 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <x-responsive-nav-link :href="route('profile.edit')" class="text-decoration-none text-black my-auto">
+                                        {{ __('Profile') }}
+                                    </x-responsive-nav-link>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{route('logout')}}">
                                         @csrf
-
                                         <x-dropdown-link :href="route('logout')"
                                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();" class="text-decoration-none text-black my-auto">
-                                            {{ __('Log Out') }}
+                                            {{__('Log Out')}}
                                         </x-dropdown-link>
                                     </form>
                                 </li>
