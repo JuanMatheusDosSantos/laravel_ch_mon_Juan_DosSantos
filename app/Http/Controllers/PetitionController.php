@@ -30,7 +30,10 @@ class PetitionController extends Controller
     function store(Request $request)
     {
         $this->validate($request,[
-            "title"=>"required|max:255"
+            "title"=>"required|max:255",
+            "description"=>"require",
+            "destinatary"=>"require",
+            "category"=>"require",
     ]);
         try {
             $category=Category::findOrFail($input["category"]);
@@ -46,6 +49,13 @@ class PetitionController extends Controller
             }
 
         }catch (\Exception $e){
+
+        }
+    }
+    function fileupload(Request $request, $id)
+    {
+        $image=null;
+        if (){
 
         }
     }
