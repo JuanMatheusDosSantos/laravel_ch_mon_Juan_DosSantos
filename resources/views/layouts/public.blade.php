@@ -31,7 +31,8 @@
                     <div class="d-lg-flex gap-3 d-none">
                         <a href="" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
                         <a href="" class="text-decoration-none text-black"><strong> Programa de socios/as</strong></a>
-                        <a href="" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg" alt=""
+                        <a href="" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg"
+                                                                                        alt=""
                                                                                         class="me-1">Buscar</strong></a>
                     </div>
                 </div>
@@ -39,27 +40,56 @@
                     <a href="iniciopeticion.htm" class="text-decoration-none text-black border border-dark p-2 rounded"><strong>Inicia
                             una
                             peticion</strong></a>
-                    <a href="" class="text-decoration-none text-black my-auto"><strong>Entrar</strong></a>
+                    @if(Auth::check())
+                        <div class="dropdown-center" id="navbarNavDarkDropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <a class="text-decoration-none text-black my-auto"><strong>{{Auth::user()->name}}</strong></a>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')"
+                                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="text-decoration-none text-black my-auto">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a href="{{route("login")}}"
+                           class="text-decoration-none text-black my-auto"><strong>Entrar</strong></a>
+                        <a href="{{route("register")}}" class="text-decoration-none text-black my-auto"><strong>Registrarse</strong></a>
+                    @endif
                 </div>
                 <div class="d-flex d-md-none">
-                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img src="assets/img/search.svg"
-                                                                                              alt="" class="me-1"></a>
+                    <a href="" class="text-decoration-none text-black d-none d-sm-block"><img
+                            src="assets/img/search.svg"
+                            alt="" class="me-1"></a>
                     <div class="btn-group d-lg-none">
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                             menu
                         </button>
                         <ul class="dropdown-menu dropdown-menu-lg-end text-center bg-transparent">
-                            <li>
-                                <a href="" class="text-decoration-none text-black mx-auto"> Mis
-                                    peticiones</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-decoration-none text-black"> Buscar</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-decoration-none text-black"> Entra o registrate</a>
-                            </li>
+                            @if(Auth::check())
+                                <li>
+                                    <a href="" class="text-decoration-none text-black mx-auto"> Mis
+                                        peticiones</a>
+                                </li>
+                                <li>{{__("Profile")}}</li>
+                            @else
+                                <li>
+                                    <a href="" class="text-decoration-none text-black"> Buscar</a>
+                                </li>
+                                <li>
+                                    <a href="" class="text-decoration-none text-black"> Entra o registrate</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

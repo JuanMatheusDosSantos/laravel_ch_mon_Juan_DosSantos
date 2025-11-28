@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->foreignId('petition_id')->references('id')->on('petitions')
                 ->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 
