@@ -46,9 +46,9 @@
             <h3><strong>Peticiones patrocinadas por otros usuarios de Change.org</strong></h3>
             <div class="row g-4">
                 @foreach($petitions as $petition)
-                    <a href="{{route("petitions.show",["id"=>$petition->id])}}">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                         <div class="card w-100">
+                            <a href="{{route("petitions.show",["id"=>$petition->id])}}">
                             <img src={{asset("assets/img/petitions/{$petition->file->file_path}")}} alt="{{$petition->file->name}}" class="card-img-top">
                             <div class="card-body">
                                 <p class="card-title">{{$petition->title}}</p>
