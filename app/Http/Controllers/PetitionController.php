@@ -3,60 +3,92 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\File;
 use App\Models\Petition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\File as FileFacade;
 
 class PetitionController extends Controller
 {
     function index()
     {
-        $petitions=Petition::all();
-        return view("petitions.index",compact("petitions"));
+        $petitions = Petition::all();
+        return view("petitions.index", compact("petitions"));
     }
+
     function show($id)
     {
-        $petition=Petition::findOrFail($id);
-        return view("petitions.show",compact("petition"));
+        $petition = Petition::findOrFail($id);
+        return view("petitions.show", compact("petition"));
     }
 
     function listMine()
     {
-        $user=Auth::id();
-        $petitions=Petition::where("user_id",$user)->get();
-        return view("petitions.mine",compact("petitions"));
+        $user = Auth::id();
+        $petitions = Petition::where("user_id", $user)->get();
+        return view("petitions.mine", compact("petitions"));
     }
+
     function store(Request $request)
     {
-        $this->validate($request,[
-            "title"=>"required|max:255",
-            "description"=>"require",
-            "destinatary"=>"require",
-            "category"=>"require",
-    ]);
+        $request->validate([
+            "title" => "required|max:255",
+            "description" => "required",
+            "destinatary" => "required",
+            "category" => "required",
+            "image" => "required|file|mimes:jpg,jpeg,png,webp"
+        ]);
+
         try {
-            $category=Category::findOrFail($input["category"]);
-            $user=Auth::user();
-            $petition=New Petition($input);
-            $petition->category()->associate($category);
-            $petition->user()->associate($user);
-            $petition->signers=0;
-            $petition->status=0;
-            $res=$petition->save();
-            if ($res){
-                return ;
+            $user = Auth::user();
+            $categoryName=$request->category;
+            $categoryId=Category::where("name",$categoryName)->first()->id;
+            $petition=Petition::create([
+                "title"=>$request->get("title"),
+                "description"=>$request->get("description"),
+                "destinatary"=>$request->get("destinatary"),
+                "category_id"=>$categoryId,
+                "user_id"=>$user->id,
+                "signers"=>0,
+                "status"=>"pending"
+            ]);
+            if ($request->hasFile("image")){
+                $response_file=$this->fileUpload($request,$petition->id);
+                if ($response_file){
+                    return redirect("/mypetitions");
+                }
+            }else {
+                return back()->withErrors(['Error creando la petición'])->withInput();
             }
 
-        }catch (\Exception $e){
-
+        } catch (\Exception $e) {
+            return back()->withErrors($e->getMessage())->withInput();
         }
+        return redirect("/mypetitions");
     }
-    function fileupload(Request $request, $id)
+
+    function create(Request $request)
+    {
+        $categories = Category::all();
+        return view("petitions.edit-add", compact("categories"));
+    }
+
+    private function fileUpload(Request $request, $id = null)
     {
         $image=null;
-        if (){
-
+        if ($request->hasFile("image")) {
+            $image = time().'.'.$request->image->extension();
+            $request->image->move(public_path('assets/img/petitions'), $image);
+            $petition=Petition::findOrFail($id);
+            $petition->file()->create([
+                'name' => $image,
+                'file_path' => $image,
+                'petition_id' => $id
+            ]);
+            return true;
         }
+        return false;
     }
 }

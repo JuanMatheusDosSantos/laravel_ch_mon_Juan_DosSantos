@@ -27,13 +27,13 @@ Route::controller(PetitionController::class)->group(function () {
     Route::get("mypetitions", "listMine")->name("petitions.mine");
     Route::get("petitions", "signedpetitions")->name("petitions.peticionesfirmadas");
 
-    Route::get("petitions/{id}", "show")->name("peticiones.show");
-    Route::get("petitions/add", "create")->name("peticiones.create");
-    Route::post("petition", "store")->name("petiticiones.store");
-    Route::delete("petition/{id}", "delete")->name("peticiones.delete");
-    Route::put('petition/{id}', 'update')->name('peticiones.update');
-    Route::post('petition/sign/{id}', 'sing')->name('peticiones.firmar');
-    Route::get('petition/edit/{id}', 'update')->name('peticiones.edit');
+    Route::get("petition/{id}", "show")->name("petitions.show");
+    Route::get("petitions/add", "create")->name("petitions.create");
+    Route::post("petition", "store")->name("petitions.store");
+    Route::delete("petition/{id}", "delete")->name("petitions.delete");
+    Route::put('petition/{id}', 'update')->name('petitions.update');
+    Route::post('petition/sign/{id}', 'sing')->name('petitions.firmar');
+    Route::get('petition/edit/{id}', 'update')->name('petitions.edit');
 
 });
 require __DIR__.'/auth.php';

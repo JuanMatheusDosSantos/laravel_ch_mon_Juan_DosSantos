@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('petitions', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255);
+            $table->string('title', 255)->unique();
             $table->text('description');
             $table->text('destinatary');
             $table->integer('signers');

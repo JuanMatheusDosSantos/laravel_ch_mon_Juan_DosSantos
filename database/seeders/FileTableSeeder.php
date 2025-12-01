@@ -16,6 +16,7 @@ class FileTableSeeder extends Seeder
         DB::statement("set foreign_key_checks=0;");
         DB::table("files")->truncate();
         DB::statement("ALTER TABLE files AUTO_INCREMENT = 1;");
+
         DB::table("files")->insert([
             "id"=>1,
             "file_path"=>"tabibito.jpg",

@@ -8,7 +8,11 @@
                     <h1>El cambio comienza aqui.</h1>
                     <p>Únete a 567.908.560 personas que están impulsando un cambio real en sus comunidades.</p>
                     <div>
-                        <a href="" class="btn btn-warning mx-2">Crear una peticion</a>
+                        @if(Auth::check())
+                        <a href="{{route("petitions.create")}}" class="btn btn-warning mx-2">Crear una petición</a>
+                        @else
+                            <a href="{{route("login")}}" class="btn btn-warning mx-2">Crear una petición</a>
+                        @endif
                         <a href="" class="btn btn-light btn-outline-dark mx-2">Comenzar con IA</a>
                     </div>
                 </div>
