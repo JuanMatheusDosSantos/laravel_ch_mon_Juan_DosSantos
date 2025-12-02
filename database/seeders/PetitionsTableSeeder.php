@@ -24,10 +24,30 @@ class PetitionsTableSeeder extends Seeder
             "description" => "¡Es navidad! asi que, ¿porque no le ponemos gorro a los perros?",
             "destinatary" => "all",
             "status" => "acepted",
-            "user_id" =>1,
-            "signers"=>0,
-            "category_id"=>1
-    ]);
+            "user_id" => 1,
+            "signers" => 0,
+            "category_id" => 1
+        ]);
+        DB::table("petitions")->insert([
+            "id" => 2,
+            "title" => "han llegado los perros navideños!",
+            "description" => "mira que monos son",
+            "destinatary" => "all",
+            "status" => "acepted",
+            "user_id" => 1,
+            "signers" => 0,
+            "category_id" => 1
+        ]);
+        DB::table("petitions")->insert([
+            "id" => 3,
+            "title" => "¡han llegado los perros navideños!",
+            "description" => "mira que monos son",
+            "destinatary" => "all",
+            "status" => "acepted",
+            "user_id" => 1,
+            "signers" => 0,
+            "category_id" => 1
+        ]);
         DB::statement("set foreign_key_checks=1");
     }
 }

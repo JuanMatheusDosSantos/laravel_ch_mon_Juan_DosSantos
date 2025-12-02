@@ -4,7 +4,7 @@
         <h1>{{$petition->title}}</h1>
         <div class="d-flex">
             <div class="col-9">
-                <img src="{{asset("assets/img/{$petition->file->file_path}")}}" alt="" class="w-50">
+                <img src="{{asset("assets/img/petitions/{$petition->file->file_path}")}}" alt="" class="w-50">
                 <div class=" mb-5">
                     <h2 class="col-10">El problema</h2>
                     <p>
@@ -142,50 +142,75 @@
                     </div>
                 </div>
             </div>
-            @if(Auth::id()!==$petition->user_id)
+            {{--            @if(Auth::id()!==$petition->user_id)--}}
             <div class="border shadow col-3 text-center h-100 p-2 sticky-top">
                 <h3>
-                    <strong>31.824</strong>
+                    <strong>Firmas totales: {{$petition->signers}}</strong>
                 </h3>
+                @if(Auth::check())
+                    @if(!Auth::id()==$petition->user_id||!$petition->userSigners->contains(Auth::id()))
+                        <hr>
+                        <div class="text-start">
+                            <h4><strong>Firma esta petición</strong></h4>
+                            <form action="get" class="">
+                                <div class="d-flex align-items-start my-3">
+                                    <input type="radio" name="opt" id="opt1">
+                                    <label for="opt1">Quiero saber si esta petición gana y cómo puedo ayudar a otras
+                                        peticiones
+                                        ciudadanas</label>
+                                </div>
+                                <div class="d-flex align-items-start my-3">
+                                    <input type="radio" name="opt" id="opt2">
+                                    <label for="opt2">No quiero saber cómo avanza esta petición ni otras peticiones
+                                        importantes</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-warning d-flex align-items-center mt-2">
+                                        <img src={{asset("assets/img/pencil.png")}} alt=""
+                                             style="width: 20px; height: 20px;">
+                                        <p class="my-auto">firma esta peticion</p>
+                                    </button>
+                                </div>
+                                {{--                            <div class="d-flex align-items-start mt-2">--}}
+                                {{--                                <input type="checkbox" name="privacidad" id="privacidad"> <label for="privacidad">No--}}
+                                {{--                                    mostrar--}}
+                                {{--                                    públicamente mi firma y mi comentario en esta petición</label>--}}
+                                {{--                            </div>--}}
+                            </form>
+                            {{--                                @endif--}}
+                        </div>
+                    @endif
+                @else
                 <hr>
                 <div class="text-start">
-                        <h4><strong>Firma esta petición</strong></h4>
-                        <form action="get" class="">
-                            <label for="nombre" class="mt-3 d-block">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="w-100">
-                            <label for="apellidos" class="mt-3 d-block">apellidos</label>
-                            <input type="text" name="apellidos" id="apellidos" class="w-100">
-                            <label for="email" class="mt-3 d-block">correo electronico</label>
-                            <input type="email" name="email" id="email" class="w-100">
-                            <label for="Ciudad" class="mt-3 d-block">Ciudad</label>
-                            <input type="text" name="Ciudad" id="Ciudad" class="w-100">
-                            <label for="País" class="mt-3 d-block">País</label>
-                            <input type="text" name="País" id="País" class="w-100">
-                            <label for="Código postal" class="mt-3 d-block">apellidos</label>
-                            <input type="text" name="Código postal" id="Código postal" class="w-100">
-                            <div class="d-flex align-items-start mt-2">
-                                <input type="radio" name="opt" id="opt1">
-                                <label for="opt1">Quiero saber si esta petición gana y cómo puedo ayudar a otras
-                                    peticiones
-                                    ciudadanas</label>
-                            </div>
-                            <div class="d-flex align-items-start mt-2">
-                                <input type="radio" name="opt" id="opt2">
-                                <label for="opt2">No quiero saber cómo avanza esta petición ni otras peticiones
-                                    importantes</label>
-                            </div>
+                    <h4><strong>Firma esta petición</strong></h4>
+                    <form action="{{route("petitions.firmar",["id"=>$petition->id])}}" method="post" class="">
+                        <div class="d-flex align-items-start my-3">
+                            <input type="radio" name="opt" id="opt1">
+                            <label for="opt1">Quiero saber si esta petición gana y cómo puedo ayudar a otras
+                                peticiones
+                                ciudadanas</label>
+                        </div>
+                        <div class="d-flex align-items-start my-3">
+                            <input type="radio" name="opt" id="opt2">
+                            <label for="opt2">No quiero saber cómo avanza esta petición ni otras peticiones
+                                importantes</label>
+                        </div>
+                        <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-warning d-flex align-items-center mt-2">
-                                <img src={{asset("assets/img/pencil.png")}} alt="" style="width: 20px; height: 20px;">
+                                <img src={{asset("assets/img/pencil.png")}} alt=""
+                                     style="width: 20px; height: 20px;">
                                 <p class="my-auto">firma esta peticion</p>
                             </button>
-                            <div class="d-flex align-items-start mt-2">
-                                <input type="checkbox" name="privacidad" id="privacidad"> <label for="privacidad">No
-                                    mostrar
-                                    públicamente mi firma y mi comentario en esta petición</label>
-                            </div>
-                        </form>
-                    @endif
-                </div>
+                        </div>
+                        {{--                            <div class="d-flex align-items-start mt-2">--}}
+                        {{--                                <input type="checkbox" name="privacidad" id="privacidad"> <label for="privacidad">No--}}
+                        {{--                                    mostrar--}}
+                        {{--                                    públicamente mi firma y mi comentario en esta petición</label>--}}
+                        {{--                            </div>--}}
+                    </form>
+
+                @endif
             </div>
         </div>
     </div>

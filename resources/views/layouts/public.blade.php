@@ -31,14 +31,17 @@
                     </div>
                     <div class="d-lg-flex gap-3 d-none">
                         @if(Auth::check())
-                        <a href="{{route("petitions.mine")}}" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                            <a href="{{route("petitions.mine")}}"
+                               class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
                         @else
-                            <a href="{{route("login")}}" class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                            <a href="{{route("login")}}" class="text-decoration-none text-black mx-auto"><strong> Mis
+                                    peticiones</strong></a>
                         @endif
                         <a href="" class="text-decoration-none text-black"><strong> Programa de socios/as</strong></a>
-                        <a href="{{route("petitions.index")}}" class="text-decoration-none text-black"><strong><img src="assets/img/search.svg"
-                                                                                        alt=""
-                                                                                        class="me-1">Buscar</strong></a>
+                        <a href="{{route("petitions.index")}}" class="text-decoration-none text-black"><strong><img
+                                    src="{{asset("assets/img/search.svg")}}"
+                                    alt=""
+                                    class="me-1">Buscar</strong></a>
                     </div>
                 </div>
                 <div class="d-flex my-auto gap-3 gap-lg-4">
@@ -53,7 +56,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <x-responsive-nav-link :href="route('profile.edit')" class="text-decoration-none text-black my-auto">
+                                    <x-responsive-nav-link :href="route('profile.edit')"
+                                                           class="text-decoration-none text-black my-auto">
                                         {{ __('Profile') }}
                                     </x-responsive-nav-link>
                                 </li>
@@ -62,7 +66,8 @@
                                         @csrf
                                         <x-dropdown-link :href="route('logout')"
                                                          onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="text-decoration-none text-black my-auto">
+                                                this.closest('form').submit();"
+                                                         class="text-decoration-none text-black my-auto">
                                             {{__('Log Out')}}
                                         </x-dropdown-link>
                                     </form>
@@ -76,8 +81,9 @@
                     @endif
                 </div>
                 <div class="d-flex d-md-none">
-                    <a href="{{route("petitions.index")}}" class="text-decoration-none text-black d-none d-sm-block"><img
-                            src="assets/img/search.svg"
+                    <a href="{{route("petitions.index")}}"
+                       class="text-decoration-none text-black d-none d-sm-block"><img
+                            src="{{asset("assets/img/search.svg")}}"
                             alt="" class="me-1"></a>
                     <div class="btn-group d-lg-none">
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="dropdown"
@@ -93,7 +99,8 @@
                                 <li>{{__("Profile")}}</li>
                             @else
                                 <li>
-                                    <a href="{{route("petitions.index")}}" class="text-decoration-none text-black"> Buscar</a>
+                                    <a href="{{route("petitions.index")}}" class="text-decoration-none text-black">
+                                        Buscar</a>
                                 </li>
                                 <li>
                                     <a href="" class="text-decoration-none text-black"> Entra o registrate</a>

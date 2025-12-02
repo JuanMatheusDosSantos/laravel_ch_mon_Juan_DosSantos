@@ -18,9 +18,22 @@ class FileTableSeeder extends Seeder
         DB::statement("ALTER TABLE files AUTO_INCREMENT = 1;");
 
         DB::table("files")->insert([
-            "id"=>1,
-            "file_path"=>"tabibito.jpg",
-            "petition_id"=>1
+            "id" => 1,
+            "name"=>"tabibito",
+            "file_path" => "tabibito.jpg",
+            "petition_id" => 1
+        ]);
+        DB::table("files")->insert([
+            "id" => 2,
+            "name"=>"tabibito",
+            "file_path" => "1764591351.jpg",
+            "petition_id" => 2
+        ]);
+        DB::table("files")->insert([
+            "id" => 3,
+            "name"=>"tabibito",
+            "file_path" => "1764591351.jpg",
+            "petition_id" => 3
         ]);
         DB::statement("set foreign_key_checks=1");
     }

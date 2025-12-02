@@ -22,6 +22,12 @@ class UsersTableSeeder extends Seeder
             "email"=>"admin@gmial.com",
             "password"=>bcrypt("12345678")
         ]);
+        DB::table("users")->insert([
+            "id"=>2,
+            "name"=>"prueba",
+            "email"=>"prueba@prueba.com",
+            "password"=>bcrypt("12345678")
+        ]);
         DB::statement("set foreign_key_checks=1");
     }
 }

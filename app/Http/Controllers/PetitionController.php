@@ -34,7 +34,7 @@ class PetitionController extends Controller
     function store(Request $request)
     {
         $request->validate([
-            "title" => "required|max:255",
+            "title" => "required|max:255|unique",
             "description" => "required",
             "destinatary" => "required",
             "category" => "required",
@@ -90,5 +90,24 @@ class PetitionController extends Controller
             return true;
         }
         return false;
+    }
+    function sign(Request $request, $id)
+    {
+        try {
+            $petition=Petition::findOrFail($id);
+            $userId=Auth::id();
+            $firmas=$petition->signers()->get();
+            foreach ($firmas as $firma){
+                if ($firma->id==$userId){
+                    return back()->withErrors("Ya has firmado esta petición")->withInput();
+                }
+            }
+            $petition->signers()->attach($userId);
+            $petition->signers=$petition->signers+1;
+            $petition->save();
+        }catch (\Exception $e){
+            return back()->withError($e->getMessage())->withInput();
+        }
+        return redirect()->back();
     }
 }

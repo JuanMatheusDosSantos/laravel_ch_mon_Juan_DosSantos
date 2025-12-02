@@ -32,7 +32,7 @@ Route::controller(PetitionController::class)->group(function () {
     Route::post("petition", "store")->name("petitions.store");
     Route::delete("petition/{id}", "delete")->name("petitions.delete");
     Route::put('petition/{id}', 'update')->name('petitions.update');
-    Route::post('petition/sign/{id}', 'sing')->name('petitions.firmar');
+    Route::post('petition/sign/{id}', 'sign')->name('petitions.firmar');
     Route::get('petition/edit/{id}', 'update')->name('petitions.edit');
 
 });
