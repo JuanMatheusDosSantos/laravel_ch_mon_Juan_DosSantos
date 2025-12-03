@@ -16,6 +16,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        session(["url.intended"=>url()->previous()]);
         return view('auth.login');
     }
 
@@ -28,7 +29,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('home', absolute: false));
+//        return redirect()->intended(route('home', absolute: false));
+        return redirect()->intended("/");
     }
 
     /**
@@ -36,12 +38,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $previous=url()->previous();
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        if (str_contains($previous, route('logout'))) {
+            $previous = '/';
+        }
+
+        return redirect($previous);
     }
 }

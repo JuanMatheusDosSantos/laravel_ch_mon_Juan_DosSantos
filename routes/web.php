@@ -24,8 +24,9 @@ Route::get("/users/firmas", [UserController::class, "peticionesFirmadas"])->midd
 
 Route::controller(PetitionController::class)->group(function () {
     Route::get("petitions/index", "index")->name("petitions.index");
+    Route::get("petitions/category/{id}","filterByCategory")->name("petitions.category");
     Route::get("mypetitions", "listMine")->name("petitions.mine");
-    Route::get("petitions", "signedpetitions")->name("petitions.peticionesfirmadas");
+    Route::get("petitions", "signedPetitions")->name("petitions.mySigned");
 
     Route::get("petition/{id}", "show")->name("petitions.show");
     Route::get("petitions/add", "create")->name("petitions.create");

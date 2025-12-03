@@ -1,4 +1,7 @@
 @extends('layouts.public')
+@section("title")
+    Home
+@endsection
 @section('content')
     <div>
         <div class="position-relative">

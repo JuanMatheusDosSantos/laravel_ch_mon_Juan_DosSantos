@@ -33,6 +33,8 @@
                         @if(Auth::check())
                             <a href="{{route("petitions.mine")}}"
                                class="text-decoration-none text-black mx-auto"><strong> Mis peticiones</strong></a>
+                            <a href="{{route("petitions.mySigned")}}"
+                               class="text-decoration-none text-black mx-auto"><strong> Peticiones firmadas</strong></a>
                         @else
                             <a href="{{route("login")}}" class="text-decoration-none text-black mx-auto"><strong> Mis
                                     peticiones</strong></a>
@@ -45,7 +47,8 @@
                     </div>
                 </div>
                 <div class="d-flex my-auto gap-3 gap-lg-4">
-                    <a href="iniciopeticion.htm" class="text-decoration-none text-black border border-dark p-2 rounded"><strong>Inicia
+                    <a href="{{route("petitions.create")}}"
+                       class="text-decoration-none text-black border border-dark p-2 rounded"><strong>Inicia
                             una
                             peticion</strong></a>
                     @if(Auth::check())

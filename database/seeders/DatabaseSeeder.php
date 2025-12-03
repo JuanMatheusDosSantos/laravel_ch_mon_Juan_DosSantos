@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             CategoryTableSeeder::class,
             PetitionsTableSeeder::class,
-            Petition_UserTableSeeder::class,
+//            Petition_UserTableSeeder::class,
             FileTableSeeder::class
         ]);
     }

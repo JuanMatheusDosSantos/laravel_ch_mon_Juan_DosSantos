@@ -1,45 +1,14 @@
-@extends("layouts.public");
+@extends("layouts.public")
+@section("title")
+    Todas Las Peticiones
+@endsection
 @section("content")
     <div class="container">
         <div class="my-5">
             <div class="d-flex flex-wrap gap-2">
-
-                <a href="#" class="btn btn-outline-primary">Políticas Públicas</a>
-                <a href="#" class="btn btn-outline-primary">Política y Gobierno</a>
-                <a href="#" class="btn btn-outline-primary">Educación</a>
-                <a href="#" class="btn btn-outline-primary">Bienestar y Salud</a>
-                <a href="#" class="btn btn-outline-primary">Gobierno Local</a>
-                <a href="#" class="btn btn-outline-primary">Justicia Penal</a>
-
-                <a href="#" class="btn btn-outline-primary">Bienestar de Familias y Niños</a>
-                <a href="#" class="btn btn-outline-primary">Justicia Económica</a>
-                <a href="#" class="btn btn-outline-primary">Medioambiente</a>
-                <a href="#" class="btn btn-outline-primary">Gobierno Nacional</a>
-                <a href="#" class="btn btn-outline-primary">Negocios y Economía</a>
-
-                <a href="#" class="btn btn-outline-primary">Entretenimiento y Medios</a>
-                <a href="#" class="btn btn-outline-primary">Derechos de los Animales</a>
-                <a href="#" class="btn btn-outline-primary">Conservación y Derechos de los Animales</a>
-                <a href="#" class="btn btn-outline-primary">Corrupción</a>
-
-                <a href="#" class="btn btn-outline-primary">Bienestar de los Animales</a>
-                <a href="#" class="btn btn-outline-primary">Cuestiones Estudiantiles</a>
-                <a href="#" class="btn btn-outline-primary">Salud Pública</a>
-                <a href="#" class="btn btn-outline-primary">Derechos de los Niños</a>
-                <a href="#" class="btn btn-outline-primary">Discapacidad</a>
-                <a href="#" class="btn btn-outline-primary">Deportes</a>
-
-                <a href="#" class="btn btn-outline-primary">Tecnología</a>
-                <a href="#" class="btn btn-outline-primary">Gobierno Regional</a>
-                <a href="#" class="btn btn-outline-primary">Derechos de las Mujeres</a>
-                <a href="#" class="btn btn-outline-primary">Acceso a Atención Médica</a>
-                <a href="#" class="btn btn-outline-primary">Derechos de los Pacientes</a>
-
-                <a href="#" class="btn btn-outline-primary">Medio Ambiente</a>
-                <a href="#" class="btn btn-outline-primary">Debido Proceso</a>
-                <a href="#" class="btn btn-outline-primary">Elecciones y Derechos de los Votantes</a>
-                <a href="#" class="btn btn-outline-primary">Prevención de Delitos</a>
-
+                @foreach($categories as $category)
+                    <a href="{{route("petitions.category",["id"=>$category->id])}}" class="btn btn-outline-primary">{{$category->name}}</a>
+                @endforeach
             </div>
         </div>
         <div class="my-5">
@@ -62,16 +31,24 @@
                                         </p>
                                     </div>
                                     @if(Auth::check())
-                                        @if(Auth::id()==$petition->user_id||$petition->userSigners->contains(Auth::id()))
+                                        @if(Auth::id()==$petition->user_id)
                                             <button type="submit" class="btn btn-outline-dark w-100 d-none">
-                                                Firma esta petición
+                                                Firmar esta petición
                                             </button>
+                                        @elseif($petition->userSigners->contains(Auth::id()))
+                                            <form method="post"
+                                                  action="{{route("petitions.firmar",["id"=>$petition->id])}}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-dark w-100">
+                                                    Des-firmar esta petición
+                                                </button>
+                                            </form>
                                         @else
                                             <form method="post"
                                                   action="{{route("petitions.firmar",["id"=>$petition->id])}}">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-dark w-100">
-                                                    Firma esta petición
+                                                    Firmar esta petición
                                                 </button>
                                             </form>
                                         @endif

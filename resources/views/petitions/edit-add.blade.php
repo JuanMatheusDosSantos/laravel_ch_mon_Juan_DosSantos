@@ -1,15 +1,27 @@
-@extends("layouts.public")
+@extends("layouts.public")ç
+@section("title")
+    Crear peticion
+@endsection
 @section("content")
 <div class="text-center">
     <h1>Demos el primer paso hacia el cambio</h1>
     <div class="container d-flex justify-content-center">
         <form action="{{route("petitions.store")}}" enctype="multipart/form-data" method="post" class="w-50 border shadow p-5" >
             @csrf
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <label for="title" class="form-label">Escribe el título de tu petición</label>
             <input type="text" class="form-control mb-3" id="title" name="title" required>
             <select name="category" id="category" class="form-select mb-3" required>
                 @foreach($categories as $category)
-                    <option name="{{$category->name}}" id="{{$category->name}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
             <label for="description" class="form-range">Cuenta tu historia</label>
