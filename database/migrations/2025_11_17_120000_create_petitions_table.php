@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->text('destinatary');
             $table->integer('signers');
             $table->enum('status', ['acepted', 'pending']);
-            $table->foreignId('user_id')->constrained("users");
-            $table->foreignId('category_id')->constrained("categories");
+            $table->foreignId('user_id')->constrained("users")->onDelete("cascade");
+            $table->foreignId('category_id')->constrained("categories")->onDelete("cascade");
             // $table->string('image', 255, ); No se necesita
             $table->timestamps();
         });

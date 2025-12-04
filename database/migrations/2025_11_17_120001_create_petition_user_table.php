@@ -18,10 +18,12 @@ return new class extends Migration {
             $table->timestamps();
             $table->foreign("petition_id")
                 ->references("id")
-                ->on("petitions");
+                ->on("petitions")
+                ->onDelete("cascade");
             $table->foreign("user_id")
                 ->references("id")
-                ->on("users");
+                ->on("users")
+                ->onDelete("cascade");
         });
     }
 
