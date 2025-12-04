@@ -23,6 +23,13 @@
                                         </p>
                                     </div>
                                 </div>
+                                <form method="post"
+                                      action="{{route("petitions.firmar",["id"=>$signed->id])}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-dark w-100">
+                                        Des-firmar esta petición
+                                    </button>
+                                </form>
                             </div>
                         </a>
                     </div>

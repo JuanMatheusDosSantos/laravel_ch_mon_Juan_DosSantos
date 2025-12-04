@@ -19,7 +19,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        session(["url.intended"=>url()->previous()]);
+        if (!session()->has('url.intended')) {
+            session(['url.intended' => url()->previous()]);
+        }
+
         return view('auth.register');
     }
 
