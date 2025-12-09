@@ -21,40 +21,47 @@ class UsersTableSeeder extends Seeder
             [
                 "id" => 1,
                 "name" => "admin",
-                "email" => "admin@gmial.com",
-                "password" => bcrypt("12345678")
+                "email" => "admin@gmail.com",
+                "password" => bcrypt("12345678"),
+                "admin" => true,
             ],
             [
                 "id" => 2,
                 "name" => "prueba",
                 "email" => "prueba@prueba.com",
-                "password" => bcrypt("12345678")
+                "password" => bcrypt("12345678"),
+                "admin" => false,
             ],
             [
                 "id" => 3,
                 "name" => "Cristina",
                 "email" => "profe@gmail.com",
-                "password" => bcrypt("12345678")
+                "password" => bcrypt("12345678"),
+                "admin" => false,
             ],
             [
                 "id" => 4,
                 "name" => "Cristian",
                 "email" => "cristian@gmail.com",
-                "password" => bcrypt("12345678")
+                "password" => bcrypt("12345678"),
+                "admin" => false,
             ],
             [
                 "id" => 5,
                 "name" => "Juan",
                 "email" => "juan@gmail.com",
-                "password" => bcrypt("12345678")
+                "password" => bcrypt("12345678"),
+                "admin" => false,
             ],
             [
                 "id" => 6,
                 "name" => "Laura",
                 "email" => "laura@gmail.com",
-                "password" => bcrypt("12345678")
+                "password" => bcrypt("12345678"),
+                "admin" => false,
             ]
         ]);
+
 
         DB::statement("SET FOREIGN_KEY_CHECKS=1;");
     }
