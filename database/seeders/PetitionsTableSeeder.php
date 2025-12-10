@@ -25,7 +25,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Perros navideños",
                 "description" => "¡Es navidad! ¿Por qué no le ponemos gorro a los perros?",
                 "destinatary" => "Ayuntamiento",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 1,
                 "signers" => 0,
                 "category_id" => 1
@@ -35,7 +35,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Han llegado los perros navideños!",
                 "description" => "Mira que monos son",
                 "destinatary" => "Vecinos",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 2,
                 "signers" => 0,
                 "category_id" => 1
@@ -45,7 +45,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Protejamos a los pájaros en invierno",
                 "description" => "Queremos que los refugios locales cuiden a las aves durante la temporada fría",
                 "destinatary" => "Refugio de aves local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 3,
                 "signers" => 0,
                 "category_id" => 1
@@ -57,7 +57,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Internet rápido para zonas rurales",
                 "description" => "Solicitamos al gobierno mejorar la conectividad en áreas remotas",
                 "destinatary" => "Ministerio de Tecnología",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 1,
                 "signers" => 0,
                 "category_id" => 2
@@ -67,7 +67,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Cursos de programación accesibles",
                 "description" => "Queremos que todos los jóvenes tengan acceso a cursos gratuitos de programación",
                 "destinatary" => "Escuelas locales de tecnología",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 2,
                 "signers" => 0,
                 "category_id" => 2
@@ -77,7 +77,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Más talleres de robótica escolar",
                 "description" => "Solicitamos fomentar la robótica en las escuelas para niños y jóvenes",
                 "destinatary" => "Gobierno local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 4,
                 "signers" => 0,
                 "category_id" => 2
@@ -89,7 +89,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Construcción de nuevas canchas deportivas",
                 "description" => "Queremos más espacios para practicar deporte en la ciudad",
                 "destinatary" => "Ayuntamiento local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 2,
                 "signers" => 0,
                 "category_id" => 3
@@ -99,7 +99,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Clases gratuitas de fútbol para todos",
                 "description" => "Queremos que los niños y jóvenes puedan aprender fútbol sin coste",
                 "destinatary" => "Club deportivo local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 5,
                 "signers" => 0,
                 "category_id" => 3
@@ -111,7 +111,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Festival de música local",
                 "description" => "Apoyemos a los artistas locales con un festival gratuito",
                 "destinatary" => "Concejo Cultural",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 3,
                 "signers" => 0,
                 "category_id" => 4
@@ -121,7 +121,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Clases de música gratuitas para la comunidad",
                 "description" => "Queremos que todos tengan acceso a aprender música sin coste",
                 "destinatary" => "Escuelas de música locales",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 6,
                 "signers" => 0,
                 "category_id" => 4
@@ -133,7 +133,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Proyecciones de cine gratuitas",
                 "description" => "Solicitamos cine abierto para todos los vecinos",
                 "destinatary" => "Biblioteca local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 1,
                 "signers" => 0,
                 "category_id" => 5
@@ -143,7 +143,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Taller de cine para jóvenes",
                 "description" => "Queremos enseñar a jóvenes a hacer cortometrajes y documentales",
                 "destinatary" => "Centro cultural local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 4,
                 "signers" => 0,
                 "category_id" => 5
@@ -155,7 +155,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Promoción de rutas turísticas locales",
                 "description" => "Solicitamos mejorar la información y señalización para turistas",
                 "destinatary" => "Oficina de turismo local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 5,
                 "signers" => 0,
                 "category_id" => 6
@@ -165,7 +165,7 @@ class PetitionsTableSeeder extends Seeder
                 "title" => "Guías de viaje gratuitas",
                 "description" => "Queremos facilitar información de turismo local a todos",
                 "destinatary" => "Gobierno local",
-                "status" => "acepted",
+                "status" => "accepted",
                 "user_id" => 6,
                 "signers" => 0,
                 "category_id" => 6

@@ -42,7 +42,7 @@ Route::controller(PetitionController::class)->group(function () {
 
 });
 Route::middleware("admin")->
-controller(AdminCategoriesController::class)->group(function () {
+controller(AdminPetitionsController::class)->group(function () {
     Route::get('admin', 'index')->name('admin.home');
     Route::get('admin/peticiones/index', 'index')->name('adminpetitions.index');
     Route::get('admin/peticiones/{id}', 'show')->name('adminpetitions.show');
@@ -54,7 +54,7 @@ controller(AdminCategoriesController::class)->group(function () {
     Route::put('admin/peticiones/estado/{id}', 'cambiarEstado')->name('adminpetitions.estado');
 });
 Route::middleware("admin")->
-controller(AdminUsersController::class)->group(function () {
+controller(AdminCategoriesController::class)->group(function () {
     Route::get('admin/categories/index', 'index')->name('admincategories.index');
     Route::get('admin/categories/{id}', 'show')->name('admincategories.show');
     Route::get('admin/category/add', 'create')->name('admincategories.create');
@@ -65,7 +65,7 @@ controller(AdminUsersController::class)->group(function () {
     Route::put('admin/categories/estado/{id}', 'cambiarEstado')->name('admincategories.estado');
 });
 Route::middleware("admin")->
-controller(AdminPetitionsController::class)->group(function () {
+controller(AdminUsersController::class)->group(function () {
     Route::get('admin/users/index', 'index')->name('adminusers.index');
     Route::get('admin/users/{id}', 'show')->name('adminusers.show');
     Route::get('admin/user/add', 'create')->name('adminusers.create');
