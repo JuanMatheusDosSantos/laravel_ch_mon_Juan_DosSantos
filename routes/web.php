@@ -51,7 +51,7 @@ controller(AdminPetitionsController::class)->group(function () {
     Route::post('admin/peticiones', 'store')->name('adminpetitions.store');
     Route::delete('admin/peticiones/{id}', 'delete')->name('adminpetitions.delete');
     Route::put('admin/peticiones/{id}', 'update')->name('adminpetitions.update');
-    Route::put('admin/peticiones/estado/{id}', 'cambiarEstado')->name('adminpetitions.estado');
+    Route::put('admin/peticiones/estado/{id}', 'cambiarEstado')->name('adminpetitions.state');
 });
 Route::middleware("admin")->
 controller(AdminCategoriesController::class)->group(function () {
@@ -62,7 +62,6 @@ controller(AdminCategoriesController::class)->group(function () {
     Route::post('admin/categories', 'store')->name('admincategories.store');
     Route::delete('admin/categories/{id}', 'delete')->name('admincategories.delete');
     Route::put('admin/categories/{id}', 'update')->name('admincategories.update');
-    Route::put('admin/categories/estado/{id}', 'cambiarEstado')->name('admincategories.estado');
 });
 Route::middleware("admin")->
 controller(AdminUsersController::class)->group(function () {
@@ -73,6 +72,5 @@ controller(AdminUsersController::class)->group(function () {
     Route::post('admin/users', 'store')->name('adminusers.store');
     Route::delete('admin/users/{id}', 'delete')->name('adminusers.delete');
     Route::put('admin/users/{id}', 'update')->name('adminusers.update');
-    Route::put('admin/users/estado/{id}', 'cambiarEstado')->name('adminusers.estado');
 });
 require __DIR__ . '/auth.php';

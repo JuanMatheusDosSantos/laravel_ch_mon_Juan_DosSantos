@@ -44,11 +44,15 @@
                                         {{ $petition->status }}
                                     </span>
                                     </td>
-                                    <td class="btn-action-group">
-                                        <a href="#" class="btn {{$petition->status=="accepted" ? "btn-danger":"btn-success"}} me-1" title="{{$petition->status=="accepted" ? "Denegar":"Aceptar"}}"><i
-                                                class="fas {{$petition->status=="accepted"?"fa-times":"fa-check"}}"></i></a>
-                                        <a href="#" class="btn btn-primary me-1" title="Ver"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-danger" title="Eliminar"><i class="fas fa-times"></i></a>
+                                    <td class="btn-action-group d-flex">
+                                        <form action="{{route("adminpetitions.state",["id"=>$petition->id])}}" method="post" class="me-1">
+                                            @csrf
+                                            @method("put")
+                                        <button type="submit" class="btn {{$petition->status=="accepted" ? "btn-danger":"btn-success"}} me-1" title="{{$petition->status=="accepted" ? "Denegar":"Aceptar"}}"><i
+                                                class="fas {{$petition->status=="accepted"?"fa-times":"fa-check"}}"></i></button>
+                                        </form>
+                                        <a href="{{route("adminpetitions.show",["id"=>$petition->id])}}" class="btn btn-primary me-1" title="Ver"><i class="fas fa-eye"></i></a>
+                                        <a href="#" class="btn btn-danger ms-1" title="Eliminar"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
