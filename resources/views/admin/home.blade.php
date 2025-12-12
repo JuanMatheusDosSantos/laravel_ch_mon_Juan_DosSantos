@@ -51,8 +51,15 @@
                                         <button type="submit" class="btn {{$petition->status=="accepted" ? "btn-danger":"btn-success"}} me-1" title="{{$petition->status=="accepted" ? "Denegar":"Aceptar"}}"><i
                                                 class="fas {{$petition->status=="accepted"?"fa-times":"fa-check"}}"></i></button>
                                         </form>
-                                        <a href="{{route("adminpetitions.show",["id"=>$petition->id])}}" class="btn btn-primary me-1" title="Ver"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-danger ms-1" title="Eliminar"><i class="fas fa-times"></i></a>
+                                        <a href="{{ route('adminpetitions.edit', ["id"=>$petition->id]) }}"
+                                           class="btn btn-primary me-1"
+                                           title="Editar"><i class="fas fa-pen"></i></a>
+                                        <a href="{{route("adminpetitions.show",["id"=>$petition->id])}}" class="btn btn-info me-1" title="Ver"><i class="fas fa-eye"></i></a>
+                                        <form action="{{route("adminpetitions.delete",["id"=>$petition->id])}}" method="post"onsubmit="return confirm('¿estas seguro de que quieres eliminar la petición?')">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button type="submit" class="btn btn-danger ms-1" title="Eliminar" ><i class="fas fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('description');
             $table->text('destinatary');
             $table->integer('signers');
-            $table->enum('status', ['accepted', 'pending',"denied"]);
+            $table->enum('status', ['accepted', 'pending']);
             $table->foreignId('user_id')->constrained("users")->onDelete("cascade");
             $table->foreignId('category_id')->constrained("categories")->onDelete("cascade");
             // $table->string('image', 255, ); No se necesita
