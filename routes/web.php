@@ -33,13 +33,12 @@ Route::controller(PetitionController::class)->group(function () {
     Route::get("petitions", "signedPetitions")->name("petitions.mySigned");
 
     Route::get("petition/{id}", "show")->name("petitions.show");
-    Route::get("petitions/add", "create")->name("petitions.create");
     Route::post("petition", "store")->name("petitions.store");
+    Route::get("petitions/add", "create")->name("petitions.create");
+    Route::get('petition/edit/{id}', 'edit')->name('petitions.edit');
     Route::delete("petition/{id}", "delete")->name("petitions.delete");
     Route::put('petition/{id}', 'update')->name('petitions.update');
     Route::post('petition/sign/{id}', 'sign')->name('petitions.firmar');
-    Route::get('petition/edit/{id}', 'update')->name('petitions.edit');
-
 });
 Route::middleware("admin")->
 controller(AdminPetitionsController::class)->group(function () {

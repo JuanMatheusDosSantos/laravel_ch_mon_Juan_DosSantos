@@ -7,7 +7,7 @@
 
     <div class="content-wrapper">
 
-        <button class="btn btn-primary mb-3">Nueva Petición</button>
+        <button class="btn btn-warning mb-3"><a href="{{route("adminpetitions.create")}}" class="text-black text-decoration-none">Nueva Petición</a></button>
 
         <div class="card shadow-sm border-0">
             <div class="card-body p-0">
@@ -20,6 +20,7 @@
                                 <th scope="col">Título</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Firmantes</th>
+                                <th scope="col">Categoria</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -37,6 +38,7 @@
                                     <td>{{$petition->title}}</td>
                                     <td>{{$petition->description}}</td>
                                     <td>{{$petition->signers}}</td>
+                                    <td>{{$petition->category->name}}</td>
 
                                     <td>
                                     <span

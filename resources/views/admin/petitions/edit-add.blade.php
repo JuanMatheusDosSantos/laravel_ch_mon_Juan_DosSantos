@@ -5,112 +5,127 @@
 @section("content")
     <div class="content-wrapper">
 
-        <h2 class="mb-4">Crear Nueva Petición</h2>
+        {{-- Título con un ligero margen y borde inferior para separación --}}
+        <h2 class="mb-4 pb-2 border-bottom text-dark">Editar Petición: #{{ $petition->id }}</h2>
 
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
+        <div class="card shadow-lg border-primary"> {{-- Sombra más fuerte y borde azul primario --}}
+            <div class="card-body p-4"> {{-- Padding un poco mayor --}}
 
+                {{-- Importante: El método y la ruta son correctos para una actualización (PUT) --}}
                 <form action="{{ route('adminpetitions.update',["id"=>$petition->id]) }}" method="POST"
                       enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
+                    {{-- Título --}}
                     <div class="mb-3">
-                        <label for="title" class="form-label">Título</label>
+                        <label for="title" class="form-label fw-bold">Título</label>
                         <input type="text"
-                               class="form-control"
+                               class="form-control form-control-lg border-secondary" {{-- Input más grande y borde sutil --}}
                                id="title"
                                name="title"
-{{--                               value="{{$petition->title}}"--}}
+                               value="{{ old('title', $petition->title) }}" {{-- USAMOS old() y valor por defecto --}}
                         >
                         @error('title')
                         <div class="text-danger small mt-1">{{$message}}</div>
                         @enderror
                     </div>
 
-                    {{-- Campo: Descripción --}}
+                    {{-- Descripción --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descripción</label>
-                        <textarea class="form-control"
+                        <label for="description" class="form-label fw-bold">Descripción</label>
+                        <textarea class="form-control border-secondary"
                                   id="description"
                                   name="description"
                                   rows="4"
-                                  ></textarea>
+                        >{{ old('description', $petition->description) }}</textarea> {{-- USAMOS old() y valor por defecto --}}
                         @error('description')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    {{-- Destinatarios --}}
                     <div class="mb-3">
-                        <label for="destinatary" class="form-label">Destinatarios</label>
+                        <label for="destinatary" class="form-label fw-bold">Destinatarios</label>
                         <input type="text"
-                               class="form-control"
+                               class="form-control border-secondary"
                                id="destinatary"
                                name="destinatary"
-                            {{--                               value="{{$petition->title}}"--}}
+                               value="{{ old('destinatary', $petition->destinatary) }}" {{-- Asumo que tienes 'destinatary' en $petition --}}
                         >
                         @error('destinatary')
                         <div class="text-danger small mt-1">{{$message}}</div>
                         @enderror
                     </div>
-                    {{-- Campo: Imagen/Archivo (Necesitas 'enctype="multipart/form-data"' en el form) --}}
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Imagen de la Petición</label>
+
+                    {{-- Imagen/Archivo --}}
+                    <div class="mb-3 p-3 border rounded bg-light"> {{-- Bloque de archivo destacado --}}
+                        <label for="image" class="form-label fw-bold text-primary">Imagen de la Petición (Subir nuevo archivo)</label>
                         <input class="form-control"
                                type="file"
                                name="image"
                                id="image"
                                accept="image/png, image/jpeg, image/jpg,image/webp"
                         >
+                        <div class="form-text mt-2">Imagen actual: **{{ $petition->file->file_path ?? 'No hay archivo' }}**</div>
                         @error('image')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Campo: Firmantes (Inicialmente, este campo suele ser 0 al crear, pero lo incluimos por la tabla) --}}
+                    {{-- Firmantes --}}
                     <div class="mb-3">
-                        <label for="signers" class="form-label">Firmantes (Valor Inicial)</label>
+                        <label for="signers" class="form-label fw-bold">Firmantes (Valor Actual)</label>
                         <input type="number"
-                               class="form-control"
+                               class="form-control border-warning" {{-- Borde amarillo para destacar que son datos numéricos --}}
                                id="signers"
                                name="signers"
-                               value="{{$petition->signers}}"
+                               value="{{ old('signers', $petition->signers) }}"
                                min="0"
-                               >
-                        <div class="form-text">Este es el número de firmantes inicial, usualmente 0.</div>
+                        >
+                        <div class="form-text text-muted">Este campo representa la cantidad de firmas actuales y solo debería ser actualizado por el sistema.</div>
                         @error('signers')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Campo: Estado (Usando un select) --}}
+                    {{-- Estado --}}
                     <div class="mb-4">
-                        <label for="status" class="form-label">Estado</label>
-                        <select class="form-select" id="status" name="status">
-                            <option value="pending" {{ $petition->status == 'pending' ? 'selected' : '' }}>Pendiente
+                        <label for="status" class="form-label fw-bold">Estado</label>
+                        <select class="form-select border-secondary" id="status" name="status">
+                            <option value="pending" {{ old('status', $petition->status) == 'pending' ? 'selected' : '' }}>Pendiente
                             </option>
-                            <option value="accepted" {{ $petition->status == 'accepted' ? 'selected' : '' }}>Aceptada
+                            <option value="accepted" {{ old('status', $petition->status) == 'accepted' ? 'selected' : '' }}>Aceptada
                             </option>
                         </select>
                         @error('status')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    {{-- Categoría --}}
                     <div class="mb-4">
-                        <label for="category" class="form-label">Estado</label>
-                        <select class="form-select" id="category" name="category">
+                        <label for="category" class="form-label fw-bold">Categoría</label>
+                        <select class="form-select border-secondary" id="category" name="category">
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}" {{$category->id==$petition->category_id?"selected":""}}>{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{ old('category', $petition->category_id) == $category->id ? "selected" : "" }}>{{$category->name}}</option>
                             @endforeach
                         </select>
-                        @error('status')
+                        @error('category')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Botón de Enviar --}}
-                    <button type="submit" class="btn btn-success btn-lg">Guardar Petición</button>
+                    {{-- Botones --}}
+                    <div class="pt-3 border-top d-flex justify-content-end"> {{-- Separador y alineación a la derecha --}}
+                        <button type="submit" class="btn btn-success btn-lg shadow-sm me-2">
+                            <i class="fas fa-save me-1"></i> Actualizar Petición
+                        </button>
 
-                    {{-- Botón de Cancelar --}}
-                    <a href="{{ route('admin.home') }}" class="btn btn-secondary btn-lg ms-2">Cancelar</a>
+                        <a href="{{ route('admin.home') }}" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-undo me-1"></i> Cancelar
+                        </a>
+                    </div>
 
 
                 </form>

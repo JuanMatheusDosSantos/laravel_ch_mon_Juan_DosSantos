@@ -1,4 +1,4 @@
-@extends("layouts.public")ç
+@extends("layouts.public")
 @section("title")
     Crear peticion
 @endsection

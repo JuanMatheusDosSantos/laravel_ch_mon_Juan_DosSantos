@@ -39,7 +39,9 @@
 
         <aside class="sidebar">
             <div class="sidebar-header">
+                <a href="{{route("home")}}" class="text-decoration-none text-white">
                 change.org
+                </a>
             </div>
 
             <div class="admin-profile">

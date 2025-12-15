@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Petition;
+use App\Policies\PeticionePolicy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+        Petition::class => PeticionePolicy::class,
+    ];
     /**
      * Register any application services.
      */

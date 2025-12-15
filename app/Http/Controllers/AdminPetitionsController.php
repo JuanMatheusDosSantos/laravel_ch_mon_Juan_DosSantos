@@ -51,16 +51,16 @@ class AdminPetitionsController extends Controller
         try {
             Petition::findOrFail($id)->delete();
         } catch (\Exception $e) {
-            return response()->json(["message" => "error", "no se ha podido encontrar la peticion"]);
+            return response()->json(["message" => "error", "no se ha podido encontrar la petición"]);
         }
         return redirect()->route("admin.home");
     }
 
     function edit($id)
     {
-        $categories=Category::all();
+        $categories = Category::all();
         $petition = Petition::findOrFail($id);
-        return view("admin.petitions.edit-add", compact("petition","categories"));
+        return view("admin.petitions.edit-add", compact("petition", "categories"));
     }
 
     function update(Request $request, $id)
@@ -70,8 +70,8 @@ class AdminPetitionsController extends Controller
             "description" => "nullable|max:255",
             "destinatary" => "nullable|max:255",
             "category" => "required",
-            "signers"=>"numeric|min:0",
-            "status"=>"required|in:accepted,pending",
+            "signers" => "numeric|min:0",
+            "status" => "required|in:accepted,pending",
             "image" => "nullable|file|mimes:jpg,jpeg,png,webp"
         ]);
         try {
@@ -81,21 +81,25 @@ class AdminPetitionsController extends Controller
             }
             if (!is_null($request->description)) {
                 $petition->description = $request->description;
-            }try {
-            if (!is_null($request->image)) {
-                $this->fileReUpload($request, $petition->id);
+            }
+            try {
+                if (!is_null($request->image)) {
+                    $this->fileReUpload($request, $petition->id);
                 }
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 return response()->json([
                     "message" => "error",
-                    "error"   => $e->getMessage(),
-                    "line"    => $e->getLine(),
-                    "file"    => $e->getFile(),
-                    "trace"   => $e->getTraceAsString(),
+                    "error" => $e->getMessage(),
+                    "line" => $e->getLine(),
+                    "file" => $e->getFile(),
+                    "trace" => $e->getTraceAsString(),
                 ], 400);
             }
             if (!is_null($request->destinatary)) {
                 $petition->destinatary = $request->destinatary;
+            }
+            if ((!is_null($request->status)) && ($petition->status != $request->status)) {
+                $petition->status = $request->status;
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "error",
@@ -120,21 +124,21 @@ class AdminPetitionsController extends Controller
             $pathName = pathinfo($request->file("image")->getClientOriginalName(), PATHINFO_FILENAME);
             $temp = $request->file("image")->getPathname();
             if (!copy($temp, $path . DIRECTORY_SEPARATOR . $image)) {
-                return false; // Error al copiar
+                return false;
             }
             $petition = Petition::findOrFail($id);
-            if ($imagenOriginal){
+            if ($imagenOriginal) {
                 $imagenOriginal->update([
-                    "name"=>$pathName,
-                    "file_path"=>$image
+                    "name" => $pathName,
+                    "file_path" => $image
                 ]);
-            }
-            else{$petition->file()->create([
-                'name' => $pathName,
-                'file_path' => $image,
-                'petition_id' => $id
-            ]);
-            return true;
+            } else {
+                $petition->file()->create([
+                    'name' => $pathName,
+                    'file_path' => $image,
+                    'petition_id' => $id
+                ]);
+                return true;
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "error",
@@ -143,5 +147,11 @@ class AdminPetitionsController extends Controller
             ], 400);
         }
         return false;
+    }
+
+    function create(Request $request)
+    {
+        $categories = Category::all();
+        return view("admin.petitions.create", compact("categories"));
     }
 }
