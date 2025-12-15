@@ -61,7 +61,8 @@ class AdminCategoriesController extends Controller
     {
         try {
             $request->validate([
-
+                "name"=>"required|max:255",
+                "description"=>"nullable"
             ]);
             $category = Category::create([
                 'name' => $request->name,
