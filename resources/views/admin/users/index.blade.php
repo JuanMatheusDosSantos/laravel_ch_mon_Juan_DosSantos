@@ -28,14 +28,14 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <span class="badge {{ $user->admin ? 'bg-danger' : 'bg-secondary' }}">
-                                            {{ $user->admin ? 'Admin' : 'User' }}
+                                        <span class="badge {{ $user->role_id ? 'bg-danger' : 'bg-secondary' }}">
+                                            {{ $user->role_id ? 'Admin' : 'User' }}
                                         </span>
                                     </td>
                                     <td>{{$user->created_at}}</td>
 
                                     <td class="btn-action-group">
-                                        <a href="{{ route('adminusers.edit', $user) }}"
+                                        <a href="{{ route('adminusers.edit', ["id"=>$user->id,"redirect"=>url()->current()]) }}"
                                            class="btn btn-primary me-1"
                                            title="Editar"><i class="fas fa-pen"></i></a>
 
@@ -43,7 +43,7 @@
                                            class="btn btn-info me-1"
                                            title="Ver"><i class="fas fa-eye"></i></a>
 
-                                        <form action="{{ route('adminusers.update', $user) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('adminusers.delete', ["id"=>$user->id]) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar al usuario {{ $user->name }}?')">

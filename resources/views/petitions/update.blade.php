@@ -20,7 +20,6 @@
                             @csrf
                             @method('PUT')
 
-                            {{-- Título --}}
                             <div class="mb-3">
                                 <label for="title" class="form-label fw-bold">Título</label>
                                 <input type="text"
@@ -34,7 +33,6 @@
                                 @enderror
                             </div>
 
-                            {{-- Descripción --}}
                             <div class="mb-3">
                                 <label for="description" class="form-label fw-bold">Descripción</label>
                                 <textarea class="form-control border-secondary"

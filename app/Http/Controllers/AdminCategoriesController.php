@@ -51,7 +51,7 @@ class AdminCategoriesController extends Controller
         } catch (\Exception $e) {
             return response()->json(["message" => "error", "no se ha podido encontrar la petición"]);
         }
-        return redirect()->route("admin.home");
+        return redirect()->route("admincategories.index");
     }
     function create()
     {
@@ -71,5 +71,6 @@ class AdminCategoriesController extends Controller
         }catch (\Exception $e){
             return response()->json(["message" => "error", "no se ha podido crear la categoria"]);
         }
+        return redirect()->route("admincategories.index");
     }
 }

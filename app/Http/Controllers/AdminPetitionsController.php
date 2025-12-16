@@ -53,7 +53,7 @@ class AdminPetitionsController extends Controller
         } catch (\Exception $e) {
             return response()->json(["message" => "error", "no se ha podido encontrar la petición"]);
         }
-        return redirect()->route("admin.home");
+        return view("admin.categories.index");
     }
 
     function edit($id)
@@ -153,5 +153,22 @@ class AdminPetitionsController extends Controller
     {
         $categories = Category::all();
         return view("admin.petitions.create", compact("categories"));
+    }
+
+    function store(Request $request)
+    {
+        $request->validate([
+            "name" => "required|max:255",
+            "description" => "nullable|max:255"
+        ]);
+        try {
+            Petition::create([
+                "name" => $request->get("name"),
+                "description" => $request->get("description")
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['image' => 'se ha producido un error a la hora de crear la peticion'])->withInput();;
+        }
+        return view("admin.home");
     }
 }
