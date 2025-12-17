@@ -103,8 +103,8 @@ class AdminPetitionsController extends Controller
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "error",
-//                "ha ocurrido un error"
-                $e
+                "ha ocurrido un error"
+//                $e
             ], 400);
         }
         $petition->save();

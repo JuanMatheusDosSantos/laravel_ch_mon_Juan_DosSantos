@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Petition;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class AdminUsersController extends Controller
     function edit($id, Request $request)
     {
         //esto guarda en la sesion la anterior url
-        if ($request->has("redirect")){
+        if ($request->has("redirect")) {
             session(['redirect_after_update' => $request->redirect]);
         }
         $user = User::findOrFail($id);
@@ -50,15 +51,68 @@ class AdminUsersController extends Controller
         } catch (\Exception $e) {
 
         }
-        return redirect()->to(session("redirect_after_update",route("admin.home")));
+        return redirect()->to(session("redirect_after_update", route("admin.home")));
     }
+
     function delete($id)
     {
+
         try {
+            $user=User::findOrFail($id);
+            if (!is_null($user->petitions)){
 
-        }catch (\Exception $e){
-
+                Petition::where("user_id",$user)->delete();
+            }
+            if ($user->role_id&&User::where("role_id",1)->count()==1){
+                return redirect()->route("adminusers.index")->
+                with("alert","no puedes eliminar este usuario debido a que es el único admin que hay");
+            }
+            if (!is_null($user->signedPetitions)){
+                $petitionsSigneds=$user->signedPetitions;
+                foreach ($petitionsSigneds as $petitionsSigned){
+                    $petition=Petition::findOrFail($petitionsSigned->id);
+                    $petition->signers-=1;
+                    $petitionsSigned->delete();
+                }
+            }
+            $user->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "error",
+                "no se ha podido encontrar la petición"
+//                $e->getMessage()
+            ]);
         }
-        return ;
+        return redirect()->route("adminusers.index");
+    }
+
+    function create()
+    {
+        return view("admin.users.create");
+    }
+
+    function store(Request $request)
+    {
+        try {
+            $request->validate([
+                "name" => "required|max:255|string",
+                "email" => "required|max:255|email",
+                "password" => "required|max:255",
+                "role_id" => "nullable|boolean"
+            ]);
+
+            User::create([
+                "name"=>$request->name,
+                "email"=>$request->email,
+                "password"=>bcrypt($request->password),
+                "role_id"=>$request->role_id
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "error",
+                $e->getMessage()
+//                "no se ha podido crear el usuario"
+            ]);
+        }
+//        dd($request->role_id);
+        return redirect()->route("adminusers.index");
     }
 }

@@ -27,15 +27,11 @@
     </head>
 
     <body>
-
-        {{-- ================================================= --}}
-        {{-- INICIO: Layout de dos columnas (Sidebar + Contenido) --}}
-        {{-- ================================================= --}}
-
-        {{--
-            El <body> es el contenedor Flex, definido en admin.css
-            Esto permite que <aside> y <div> main-content se coloquen lado a lado.
-        --}}
+        @if(session('alert'))
+            <script>
+                alert("{{ session('alert') }}");
+            </script>
+        @endif
 
         <aside class="sidebar">
             <div class="sidebar-header">
@@ -45,7 +41,6 @@
             </div>
 
             <div class="admin-profile">
-                {{-- Aquí puedes usar la foto del usuario autenticado si es Laravel --}}
                 <img src="{{asset("/assets/img/users/tabibito.jpg") }}"
                      alt="Avatar Admin" class="admin-avatar">
                 <div class="fw-bold">{{ Auth::user()->name}}</div>
@@ -64,28 +59,23 @@
             </nav>
         </aside>
 
-        {{-- Contenedor del contenido principal y la barra superior --}}
         <div class="main-content">
 
-            {{-- TOPBAR (Barra Superior) --}}
             <header class="topbar">
                 <div class="col-8 col-md-4">
                     <input type="search" class="form-control" placeholder="Search Here">
                 </div>
                 <div class="d-flex align-items-center">
-                    {{-- Icono de Notificaciones --}}
                     <div class="position-relative me-3">
                         <i class="fas fa-bell text-secondary fs-5"></i>
                         <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">2</span>
                     </div>
-                    {{-- Icono de Mensajes --}}
                     <div class="position-relative me-3">
                         <i class="fas fa-envelope text-secondary fs-5"></i>
                         <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">?</span>
                     </div>
-                    {{-- Avatar del Usuario en la Topbar --}}
                     <div class="dropdown-center" id="navbarNavDarkDropdown">
                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -116,23 +106,14 @@
                 </div>
             </header>
 
-            {{-- CONTENIDO DINÁMICO (Aquí se inyecta el @section('content') de las vistas) --}}
             <main class="content-wrapper">
                 @yield("content")
             </main>
 
-            {{-- FOOTER --}}
             <footer class="px-3 pt-5 border-top d-flex flex-column align-items-center mt-auto">
-                {{-- Nota: El mt-auto asegura que el footer se empuje hacia abajo dentro del main-content --}}
                 <p class="text-muted small">© {{ date('Y') }} Mi Aplicación Admin</p>
             </footer>
         </div>
-
-        {{-- ================================================= --}}
-        {{-- FIN: Layout de dos columnas --}}
-        {{-- ================================================= --}}
-
-        {{-- Scripts JS --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
