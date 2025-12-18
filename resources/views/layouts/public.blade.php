@@ -72,7 +72,7 @@
                                     @if(Auth::check()&&Auth::user()->role_id===1)
                                         <a href="{{route("admin.home")}}"
                                            class="text-decoration-none text-black mx-auto">
-                                            Dashboard</a>
+                                            Admin Panel</a>
                                     @endif
                                 </li>
                                 <li>

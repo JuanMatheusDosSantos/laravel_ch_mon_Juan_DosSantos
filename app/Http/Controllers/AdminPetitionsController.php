@@ -12,7 +12,8 @@ class AdminPetitionsController extends Controller
 {
     public function index()
     {
-        $petitions = Petition::all();
+//        $petitions = Petition::all();
+        $petitions = Petition::paginate(10);
         return view("admin.home", compact("petitions"));
     }
 
@@ -66,7 +67,7 @@ class AdminPetitionsController extends Controller
     function update(Request $request, $id)
     {
         $request->validate([
-            "title" => "max:255|unique:petitions,title|nullable",
+            "title" => "max:255|nullable",
             "description" => "nullable|max:255",
             "destinatary" => "nullable|max:255",
             "category" => "required",
@@ -100,6 +101,9 @@ class AdminPetitionsController extends Controller
             }
             if ((!is_null($request->status)) && ($petition->status != $request->status)) {
                 $petition->status = $request->status;
+            }
+            if (!(is_null($request->category))&&($petition->category_id!=$request->category)){
+                $petition->category_id=$request->category;
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "error",

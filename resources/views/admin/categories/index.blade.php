@@ -55,17 +55,10 @@
             </div>
         </div>
 
-        {{-- Paginación (Usando el método links() de Laravel si se pasa un Paginator) --}}
         <nav aria-label="Paginación de tabla" class="mt-3">
-            @if(isset($categories) && $categories instanceof \Illuminate\Contracts\Pagination\Paginator)
-                {{ $categories->links('pagination::bootstrap-5') }}
-            @else
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
+            @if($categories->count()>10)
+                {{($categories->count()>10)}}
+                {{ $categories->links() }}
             @endif
         </nav>
 

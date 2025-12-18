@@ -72,12 +72,13 @@
         </div>
 
         <nav aria-label="Paginación de tabla" class="mt-3">
-            <ul class="pagination pagination-sm justify-content-end">
-                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-            </ul>
+{{--            <ul class="pagination pagination-sm justify-content-end">--}}
+{{--                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>--}}
+{{--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--}}
+{{--                <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
+{{--                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>--}}
+{{--            </ul>--}}
+            {{$petitions->links()}}
         </nav>
 
     </div>

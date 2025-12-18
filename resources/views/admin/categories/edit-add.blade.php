@@ -5,13 +5,11 @@
 @section("content")
     <div class="content-wrapper">
 
-        {{-- Título con un ligero margen y borde inferior para separación --}}
         <h2 class="mb-4 pb-2 border-bottom text-dark">Editar Petición: {{ $category->name }}</h2>
 
-        <div class="card shadow-lg border-primary"> {{-- Sombra más fuerte y borde azul primario --}}
-            <div class="card-body p-4"> {{-- Padding un poco mayor --}}
+        <div class="card shadow-lg border-primary">
+            <div class="card-body p-4">
 
-                {{-- Importante: El método y la ruta son correctos para una actualización (PUT) --}}
                 <form action="{{ route('admincategories.update',["id"=>$category->id]) }}" method="POST"
                       enctype="multipart/form-data">
                     @csrf
@@ -20,10 +18,10 @@
                     <div class="mb-3">
                         <label for="name" class="form-label fw-bold">Título</label>
                         <input type="text"
-                               class="form-control form-control-lg border-secondary" {{-- Input más grande y borde sutil --}}
+                               class="form-control form-control-lg border-secondary"
                                id="name"
                                name="name"
-                               value="{{ old('name', $category->name) }}" {{-- USAMOS old() y valor por defecto --}}
+                               value="{{ old('name', $category->name) }}"
                         >
                         @error('name')
                         <div class="text-danger small mt-1">{{$message}}</div>
@@ -36,14 +34,13 @@
                                   id="description"
                                   name="description"
                                   rows="4"
-                        >{{ old('description', $category->description) }}</textarea> {{-- USAMOS old() y valor por defecto --}}
+                        >{{ old('description', $category->description) }}</textarea>
                         @error('description')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Botones --}}
-                    <div class="pt-3 border-top d-flex justify-content-end"> {{-- Separador y alineación a la derecha --}}
+                    <div class="pt-3 border-top d-flex justify-content-end">
                         <button type="submit" class="btn btn-success btn-lg shadow-sm me-2">
                             <i class="fas fa-save me-1"></i> Actualizar Categoria
                         </button>

@@ -56,14 +56,4 @@ class User extends Authenticatable
         return $this->belongsToMany(Petition::class,"petition_user");
     }
 
-    protected static function booted()
-    {
-        static::deleting(function ($user){
-            $petitions=$user->signedPetitions;
-            foreach ($petitions as $petition){
-                $petition->signers=$petition->userSigners()->count();
-                $petition->save();
-            }
-        });
-    }
 }

@@ -11,6 +11,9 @@ class File extends Model
       "file_path",
       "petition_id"
     ];
+    protected $hidden=[
+        "petition_id"
+    ];
     function petition()
     {
         return $this->belongsTo(Petition::class);

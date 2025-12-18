@@ -5,13 +5,11 @@
 @section("content")
     <div class="content-wrapper">
 
-        {{-- Título con un ligero margen y borde inferior para separación --}}
         <h2 class="mb-4 pb-2 border-bottom text-dark">Editar Petición: #{{ $petition->id }}</h2>
 
-        <div class="card shadow-lg border-primary"> {{-- Sombra más fuerte y borde azul primario --}}
-            <div class="card-body p-4"> {{-- Padding un poco mayor --}}
+        <div class="card shadow-lg border-primary">
+            <div class="card-body p-4">
 
-                {{-- Importante: El método y la ruta son correctos para una actualización (PUT) --}}
                 <form action="{{ route('adminpetitions.update',["id"=>$petition->id]) }}" method="POST"
                       enctype="multipart/form-data">
                     @csrf
@@ -42,21 +40,19 @@
                         @enderror
                     </div>
 
-                    {{-- Destinatarios --}}
                     <div class="mb-3">
                         <label for="destinatary" class="form-label fw-bold">Destinatarios</label>
                         <input type="text"
                                class="form-control border-secondary"
                                id="destinatary"
                                name="destinatary"
-                               value="{{ old('destinatary', $petition->destinatary) }}" {{-- Asumo que tienes 'destinatary' en $petition --}}
+                               value="{{ old('destinatary', $petition->destinatary) }}"
                         >
                         @error('destinatary')
                         <div class="text-danger small mt-1">{{$message}}</div>
                         @enderror
                     </div>
 
-                    {{-- Imagen/Archivo --}}
                     <div class="mb-3 p-3 border rounded bg-light"> {{-- Bloque de archivo destacado --}}
                         <label for="image" class="form-label fw-bold text-primary">Imagen de la Petición (Subir nuevo archivo)</label>
                         <input class="form-control"
@@ -65,17 +61,16 @@
                                id="image"
                                accept="image/png, image/jpeg, image/jpg,image/webp"
                         >
-                        <div class="form-text mt-2">Imagen actual: **{{ $petition->file->file_path ?? 'No hay archivo' }}**</div>
+                        <div class="form-text mt-2">Imagen actual: {{ $petition->file->file_path ?? 'No hay archivo' }}</div>
                         @error('image')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Firmantes --}}
                     <div class="mb-3">
                         <label for="signers" class="form-label fw-bold">Firmantes (Valor Actual)</label>
                         <input type="number"
-                               class="form-control border-warning" {{-- Borde amarillo para destacar que son datos numéricos --}}
+                               class="form-control border-warning"
                                id="signers"
                                name="signers"
                                value="{{ old('signers', $petition->signers) }}"
@@ -87,7 +82,6 @@
                         @enderror
                     </div>
 
-                    {{-- Estado --}}
                     <div class="mb-4">
                         <label for="status" class="form-label fw-bold">Estado</label>
                         <select class="form-select border-secondary" id="status" name="status">
@@ -101,7 +95,6 @@
                         @enderror
                     </div>
 
-                    {{-- Categoría --}}
                     <div class="mb-4">
                         <label for="category" class="form-label fw-bold">Categoría</label>
                         <select class="form-select border-secondary" id="category" name="category">
@@ -114,8 +107,7 @@
                         @enderror
                     </div>
 
-                    {{-- Botones --}}
-                    <div class="pt-3 border-top d-flex justify-content-end"> {{-- Separador y alineación a la derecha --}}
+                    <div class="pt-3 border-top d-flex justify-content-end">
                         <button type="submit" class="btn btn-success btn-lg shadow-sm me-2">
                             <i class="fas fa-save me-1"></i> Actualizar Petición
                         </button>
