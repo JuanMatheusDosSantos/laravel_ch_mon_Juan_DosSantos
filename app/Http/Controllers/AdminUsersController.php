@@ -10,8 +10,9 @@ class AdminUsersController extends Controller
 {
     public function index()
     {
+        $count=User::all()->count();
         $users = User::paginate(10);
-        return view("admin.users.index", compact("users"));
+        return view("admin.users.index", compact("users","count"));
     }
 
     function show($id)

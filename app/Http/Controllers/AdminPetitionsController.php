@@ -12,9 +12,9 @@ class AdminPetitionsController extends Controller
 {
     public function index()
     {
-//        $petitions = Petition::all();
+        $count = Petition::all()->count();
         $petitions = Petition::paginate(10);
-        return view("admin.home", compact("petitions"));
+        return view("admin.home", compact("petitions","count"));
     }
 
     function cambiarEstado($id)

@@ -56,8 +56,7 @@
         </div>
 
         <nav aria-label="Paginación de tabla" class="mt-3">
-            @if($categories->count()>10)
-                {{($categories->count()>10)}}
+            @if($count>10)
                 {{ $categories->links() }}
             @endif
         </nav>

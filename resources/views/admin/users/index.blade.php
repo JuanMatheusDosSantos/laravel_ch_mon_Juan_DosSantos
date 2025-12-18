@@ -60,15 +60,8 @@
         </div>
 
         <nav aria-label="Paginación de tabla" class="mt-3">
-            @if(isset($users) && $users instanceof \Illuminate\Contracts\Pagination\Paginator)
-                {{ $users->links('pagination::bootstrap-5') }}
-            @else
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
+            @if($count>10)
+                {{ $users->links() }}
             @endif
         </nav>
 

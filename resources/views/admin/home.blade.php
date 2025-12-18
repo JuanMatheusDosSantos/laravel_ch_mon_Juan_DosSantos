@@ -78,7 +78,9 @@
 {{--                <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
 {{--                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>--}}
 {{--            </ul>--}}
+           @if($count>10)
             {{$petitions->links()}}
+            @endif
         </nav>
 
     </div>

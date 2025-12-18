@@ -10,8 +10,9 @@ class AdminCategoriesController extends Controller
 {
     public function index()
     {
+        $count=Category::all()->count();
         $categories=Category::paginate(10);
-        return view("admin.categories.index",compact("categories"));
+        return view("admin.categories.index",compact("categories","count"));
     }
     function show($id)
     {
