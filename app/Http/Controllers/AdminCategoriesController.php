@@ -10,41 +10,45 @@ class AdminCategoriesController extends Controller
 {
     public function index()
     {
-        $count=Category::all()->count();
-        $categories=Category::paginate(10);
-        return view("admin.categories.index",compact("categories","count"));
+        $count = Category::all()->count();
+        $categories = Category::paginate(10);
+        return view("admin.categories.index", compact("categories", "count"));
     }
+
     function show($id)
     {
         try {
-            $petitions = Petition::where("category_id",$id)->get();
+            $petitions = Petition::where("category_id", $id)->get();
         } catch (\Exception $e) {
             return response()->json(["message" => "error", "no se ha podido encontrar la peticion"]);
         }
         return view("admin.categories.show", compact("petitions"));
     }
+
     function edit($id)
     {
-        $category=Category::findOrFail($id);
-        return view("admin.categories.edit-add",compact("category"));
+        $category = Category::findOrFail($id);
+        return view("admin.categories.edit-add", compact("category"));
     }
+
     function update(Request $request, $id)
     {
         try {
-            $category=Category::findOrFail($id);
-            if ((!is_null($request->name))&&$category->name!=$request->name) {
+            $category = Category::findOrFail($id);
+            if ((!is_null($request->name)) && $category->name != $request->name) {
                 $category->name = $request->name;
             }
 
-            if ((!is_null($request->description))&&($category->description!=$request->description)) {
-            $category->description=$request->description;
+            if ((!is_null($request->description)) && ($category->description != $request->description)) {
+                $category->description = $request->description;
             }
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(["message" => "error", "no se ha podido encontrar la categoria"]);
         }
         $category->save();
         return redirect()->route("admincategories.index");
     }
+
     function delete($id)
     {
         try {
@@ -54,24 +58,37 @@ class AdminCategoriesController extends Controller
         }
         return redirect()->route("admincategories.index");
     }
+
     function create()
     {
         return view("admin.categories.create");
     }
+
     function store(Request $request)
     {
         try {
             $request->validate([
-                "name"=>"required|max:255",
-                "description"=>"nullable"
+                "name" => "required|max:255",
+                "description" => "nullable"
             ]);
             $category = Category::create([
                 'name' => $request->name,
                 'description' => $request->description,
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(["message" => "error", "no se ha podido crear la categoria"]);
         }
         return redirect()->route("admincategories.index");
+    }
+
+    function search(Request $request)
+    {
+        $categories = Category::where("name", "like", "%$request->name%")
+            ->orWhere("description", "like", "%$request->name%")
+            ->paginate(10);
+        $count = Category::where("name", "like", "%$request->name%")
+            ->orWhere("description", "like", "%$request->name%")
+            ->count();
+        return view("admin.categories.index", compact("count", "categories"));
     }
 }

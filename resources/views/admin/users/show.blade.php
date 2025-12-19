@@ -14,7 +14,7 @@
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-{{--                            <img src="{{ asset('assets/img/avatar-sunshine.svg') }}" alt="Avatar" class="rounded-circle me-3" style="width: 70px; height: 70px;">--}}
+                            {{--                            <img src="{{ asset('assets/img/avatar-sunshine.svg') }}" alt="Avatar" class="rounded-circle me-3" style="width: 70px; height: 70px;">--}}
                             <div>
                                 <h2 class="card-title mb-0">{{ $user->name }}</h2>
                                 <p class="text-muted mb-0">{{ $user->email }}</p>
@@ -50,8 +50,10 @@
                                 <p class="card-text text-truncate">{{ $petition->description }}</p>
                                 <div class="d-flex justify-content-between align-items-center small text-muted">
                                     <span>Firmantes: {{ $petition->signers }}</span>
-                                    <span>Estado: <span class="badge {{ $petition->status == 'accepted' ? 'bg-success' : 'bg-warning text-dark' }}">{{ ucfirst($petition->status) }}</span></span>
-                                    <a href="{{ route('adminpetitions.show', $petition->id) }}" class="btn btn-sm btn-outline-info">Ver Petición</a>
+                                    <span>Estado: <span
+                                            class="badge {{ $petition->status == 'accepted' ? 'bg-success' : 'bg-warning text-dark' }}">{{ ucfirst($petition->status) }}</span></span>
+                                    <a href="{{ route('adminpetitions.show', $petition->id) }}"
+                                       class="btn btn-sm btn-outline-info">Ver Petición</a>
                                 </div>
                             </div>
                         </div>
@@ -69,14 +71,16 @@
                     <hr>
 
                     <div class="d-grid gap-2 mb-4">
-                        <a href="{{ route('adminusers.edit', ["id"=>$user->id,"redirect"=>url()->current()]) }}" class="btn btn-primary">
+                        <a href="{{ route('adminusers.edit', ["id"=>$user->id,"redirect"=>url()->current()]) }}"
+                           class="btn btn-primary">
                             <i class="fas fa-edit me-1"></i> Editar Usuario
                         </a>
 
                         <form action="{{ route('adminusers.delete', ["id"=>$user->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger w-100" onclick="return confirm('¿Estás seguro de que quieres eliminar al usuario {{ $user->name }}?')">
+                            <button type="submit" class="btn btn-outline-danger w-100"
+                                    onclick="return confirm('¿Estás seguro de que quieres eliminar al usuario {{ $user->name }}?')">
                                 <i class="fas fa-trash-alt me-1"></i> Eliminar Usuario
                             </button>
                         </form>

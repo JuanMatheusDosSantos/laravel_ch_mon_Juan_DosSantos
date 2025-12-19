@@ -6,7 +6,7 @@
     <div class="text-center">
         <h1>Crear Nueva Categoría</h1>
         <div class="container d-flex justify-content-center">
-            <form action="{{route("admincategories.store")}}" method="post" class="w-50 border shadow p-5" >
+            <form action="{{route("admincategories.store")}}" method="post" class="w-50 border shadow p-5">
                 @csrf
 
                 @if($errors->any())

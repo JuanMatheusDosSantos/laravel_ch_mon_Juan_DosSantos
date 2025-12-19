@@ -6,7 +6,8 @@
     <div class="text-center">
         <h1>Demos el primer paso hacia el cambio</h1>
         <div class="container d-flex justify-content-center">
-            <form action="{{route("petitions.store")}}" enctype="multipart/form-data" method="post" class="w-50 border shadow p-5" >
+            <form action="{{route("petitions.store")}}" enctype="multipart/form-data" method="post"
+                  class="w-50 border shadow p-5">
                 @csrf
                 @if($errors->any())
                     <div class="alert alert-danger">
@@ -29,7 +30,8 @@
                 <label for="destinatary" class="form-label">¿A quien va dirigido?</label>
                 <input type="text" class="form-control mb-3" id="destinatary" name="destinatary" required>
                 <label for="image" class="form-label">Añade una imagen</label>
-                <input type="file" name="image" id="image" accept="image/png, image/jpeg, image/jpg,image/webp" class="form-control mb-3" required>
+                <input type="file" name="image" id="image" accept="image/png, image/jpeg, image/jpg,image/webp"
+                       class="form-control mb-3" required>
                 <button type="submit" class="btn btn-outline-primary">Crear petición</button>
             </form>
         </div>

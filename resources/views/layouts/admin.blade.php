@@ -36,7 +36,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="{{route("home")}}" class="text-decoration-none text-white">
-                change.org
+                    change.org
                 </a>
             </div>
 
@@ -50,11 +50,14 @@
 
             <nav class="nav flex-column sidebar-menu">
                 {{-- Los enlaces deben apuntar a tus rutas --}}
-                <a class="nav-link {{(url()->current()==route("admin.home")?"active":"")}}" href="{{route('admin.home') }}"><i class="fas fa-file-alt me-2"></i>
+                <a class="nav-link {{(url()->current()==route("admin.home")?"active":"")}}"
+                   href="{{route('admin.home') }}"><i class="fas fa-file-alt me-2"></i>
                     Peticiones</a>
-                <a class="nav-link {{(url()->current()==route("admincategories.index")?"active":"")}}"  href="{{ route('admincategories.index') }}"><i class="fas fa-tags me-2"></i>
+                <a class="nav-link {{(url()->current()==route("admincategories.index")?"active":"")}}"
+                   href="{{ route('admincategories.index') }}"><i class="fas fa-tags me-2"></i>
                     Categorías</a>
-                <a class="nav-link {{(url()->current()==route("adminusers.index")?"active":"")}}" href="{{ route('adminusers.index') }}"><i class="fas fa-users me-2"></i>
+                <a class="nav-link {{(url()->current()==route("adminusers.index")?"active":"")}}"
+                   href="{{ route('adminusers.index') }}"><i class="fas fa-users me-2"></i>
                     Usuarios</a>
             </nav>
         </aside>
@@ -63,7 +66,28 @@
 
             <header class="topbar">
                 <div class="col-8 col-md-4">
-                    <input type="search" class="form-control" placeholder="Search Here">
+                    @if(request()->routeIs("admin.home")||request()->routeIs("adminpetitions.search"))
+                        <form action="{{route("adminpetitions.search")}}" method="POST" class="d-flex" role="search">
+                            @csrf
+                            <input type="search" class="form-control me-2" placeholder="Busca aquí la petición"
+                                   id="title" name="title">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </form>
+                    @elseif(request()->routeIs("admincategories.index")||request()->routeIs("admincategories.search"))
+                        <form action="{{route("admincategories.search")}}" method="POST" class="d-flex" role="search">
+                            @csrf
+                            <input type="search" class="form-control me-2" placeholder="Busca aquí la categoria"
+                                   id="name" name="name">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </form>
+                    @elseif(request()->routeIs("adminusers.index")||request()->routeIs("adminusers.search"))
+                        <form action="{{route("adminusers.search")}}" method="POST" class="d-flex" role="search">
+                            @csrf
+                            <input type="search" class="form-control me-2" placeholder="Busca aquí el usuario" id="name"
+                                   name="name">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </form>
+                    @endif
                 </div>
                 <div class="d-flex align-items-center">
                     <div class="position-relative me-3">

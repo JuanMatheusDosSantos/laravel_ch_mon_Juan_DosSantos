@@ -43,7 +43,7 @@
                         <hr>
                         <div class="text-start">
                             <h4><strong>Firma esta petición</strong></h4>
-                            <form method="post"  action="{{route("petitions.firmar",["id"=>$petition->id])}}" class="">
+                            <form method="post" action="{{route("petitions.firmar",["id"=>$petition->id])}}" class="">
                                 @csrf
                                 <div class="d-flex align-items-start my-3">
                                     <input type="radio" name="opt" id="opt1" value="si">
@@ -61,7 +61,8 @@
 
                                         <img src={{asset("assets/img/pencil.png")}} alt=""
                                              style="width: 20px; height: 20px;">
-                                        <p class="my-auto">firma esta peticion</p><div></div>
+                                        <p class="my-auto">firma esta peticion</p>
+                                        <div></div>
                                     </button>
                                 </div>
                             </form>
@@ -77,7 +78,8 @@
                     @else
                         <div class="text-start">
                             <h4><strong>Firma esta petición</strong></h4>
-                            <form method="post"  action="{{route("petitions.firmar",["id"=>$petition->id])}}" class="d-none">
+                            <form method="post" action="{{route("petitions.firmar",["id"=>$petition->id])}}"
+                                  class="d-none">
                                 @csrf
                                 <div class="d-flex align-items-start my-3">
                                     <input type="radio" name="opt" id="opt1" value="si">
@@ -95,7 +97,8 @@
 
                                         <img src={{asset("assets/img/pencil.png")}} alt=""
                                              style="width: 20px; height: 20px;">
-                                        <p class="my-auto">firma esta peticion</p><div></div>
+                                        <p class="my-auto">firma esta peticion</p>
+                                        <div></div>
                                     </button>
                                 </div>
                             </form>

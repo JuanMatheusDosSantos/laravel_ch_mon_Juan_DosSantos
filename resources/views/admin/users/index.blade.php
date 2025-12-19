@@ -43,10 +43,12 @@
                                            class="btn btn-info me-1"
                                            title="Ver"><i class="fas fa-eye"></i></a>
 
-                                        <form action="{{ route('adminusers.delete', ["id"=>$user->id]) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('adminusers.delete', ["id"=>$user->id]) }}" method="POST"
+                                              class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar al usuario {{ $user->name }}?')">
+                                            <button type="submit" class="btn btn-danger" title="Eliminar"
+                                                    onclick="return confirm('¿Estás seguro de que quieres eliminar al usuario {{ $user->name }}?')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

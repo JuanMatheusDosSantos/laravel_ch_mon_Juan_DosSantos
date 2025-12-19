@@ -31,9 +31,9 @@
                     <div class="mb-3">
                         <label for="email" class="form-label fw-bold">email</label>
                         <input type="text" class="form-control border-secondary"
-                                  id="email"
-                                  name="email"
-                                  value="{{ old('email', $user->email) }}"
+                               id="email"
+                               name="email"
+                               value="{{ old('email', $user->email) }}"
                         >
                         @error('email')
                         <div class="text-danger small mt-1">{{ $message }}</div>

@@ -39,10 +39,12 @@
                                         <a href="{{route('admincategories.show', ["id"=>$category->id]) }}"
                                            class="btn btn-info me-1"
                                            title="Ver"><i class="fas fa-eye"></i></a>
-                                        <form action="{{ route('admincategories.delete', ["id"=>$category->id]) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('admincategories.delete', ["id"=>$category->id]) }}"
+                                              method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+                                            <button type="submit" class="btn btn-danger" title="Eliminar"
+                                                    onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

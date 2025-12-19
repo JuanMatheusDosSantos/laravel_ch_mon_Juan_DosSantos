@@ -31,7 +31,7 @@ class Petition extends Model
 
     function userSigners()
     {
-        return $this->belongsToMany(User::class,"petition_user");
+        return $this->belongsToMany(User::class, "petition_user");
     }
 
     function file()

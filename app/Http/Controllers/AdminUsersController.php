@@ -10,9 +10,9 @@ class AdminUsersController extends Controller
 {
     public function index()
     {
-        $count=User::all()->count();
+        $count = User::all()->count();
         $users = User::paginate(10);
-        return view("admin.users.index", compact("users","count"));
+        return view("admin.users.index", compact("users", "count"));
     }
 
     function show($id)
@@ -59,20 +59,20 @@ class AdminUsersController extends Controller
     {
 
         try {
-            $user=User::findOrFail($id);
-            if (!is_null($user->petitions)){
+            $user = User::findOrFail($id);
+            if (!is_null($user->petitions)) {
 
-                Petition::where("user_id",$user)->delete();
+                Petition::where("user_id", $user)->delete();
             }
-            if ($user->role_id&&User::where("role_id",1)->count()==1){
+            if ($user->role_id && User::where("role_id", 1)->count() == 1) {
                 return redirect()->route("adminusers.index")->
-                with("alert","no puedes eliminar este usuario debido a que es el único admin que hay");
+                with("alert", "no puedes eliminar este usuario debido a que es el único admin que hay");
             }
-            if (!is_null($user->signedPetitions)){
-                $petitionsSigneds=$user->signedPetitions;
-                foreach ($petitionsSigneds as $petitionsSigned){
-                    $petition=Petition::findOrFail($petitionsSigned->id);
-                    $petition->signers-=1;
+            if (!is_null($user->signedPetitions)) {
+                $petitionsSigneds = $user->signedPetitions;
+                foreach ($petitionsSigneds as $petitionsSigned) {
+                    $petition = Petition::findOrFail($petitionsSigned->id);
+                    $petition->signers -= 1;
                     $petitionsSigned->delete();
                 }
             }
@@ -102,10 +102,10 @@ class AdminUsersController extends Controller
             ]);
 
             User::create([
-                "name"=>$request->name,
-                "email"=>$request->email,
-                "password"=>bcrypt($request->password),
-                "role_id"=>$request->role_id
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => bcrypt($request->password),
+                "role_id" => $request->role_id
             ]);
         } catch (\Exception $e) {
             return response()->json(["message" => "error",
@@ -115,5 +115,16 @@ class AdminUsersController extends Controller
         }
 //        dd($request->role_id);
         return redirect()->route("adminusers.index");
+    }
+
+    function search(Request $request)
+    {
+        $users = User::where("name", "like", "%$request->name%")
+            ->orWhere("email", "like", "%$request->name%")
+            ->paginate(10);
+        $count = User::where("name", "like", "%$request->name%")
+            ->orWhere("email", "like", "%$request->name%")
+            ->count();
+        return view("admin.users.index", compact("count", "users"));
     }
 }

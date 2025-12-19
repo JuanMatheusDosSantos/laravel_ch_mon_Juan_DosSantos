@@ -7,7 +7,8 @@
 
     <div class="content-wrapper">
 
-        <button class="btn btn-warning mb-3"><a href="{{route("adminpetitions.create")}}" class="text-black text-decoration-none">Nueva Petición</a></button>
+        <button class="btn btn-warning mb-3"><a href="{{route("adminpetitions.create")}}"
+                                                class="text-black text-decoration-none">Nueva Petición</a></button>
 
         <div class="card shadow-sm border-0">
             <div class="card-body p-0">
@@ -47,20 +48,28 @@
                                     </span>
                                     </td>
                                     <td class="btn-action-group d-flex">
-                                        <form action="{{route("adminpetitions.state",["id"=>$petition->id])}}" method="post" class="me-1">
+                                        <form action="{{route("adminpetitions.state",["id"=>$petition->id])}}"
+                                              method="post" class="me-1">
                                             @csrf
                                             @method("put")
-                                        <button type="submit" class="btn {{$petition->status=="accepted" ? "btn-danger":"btn-success"}} me-1" title="{{$petition->status=="accepted" ? "Denegar":"Aceptar"}}"><i
-                                                class="fas {{$petition->status=="accepted"?"fa-times":"fa-check"}}"></i></button>
+                                            <button type="submit"
+                                                    class="btn {{$petition->status=="accepted" ? "btn-danger":"btn-success"}} me-1"
+                                                    title="{{$petition->status=="accepted" ? "Denegar":"Aceptar"}}"><i
+                                                    class="fas {{$petition->status=="accepted"?"fa-times":"fa-check"}}"></i>
+                                            </button>
                                         </form>
                                         <a href="{{ route('adminpetitions.edit', ["id"=>$petition->id]) }}"
                                            class="btn btn-primary me-1"
                                            title="Editar"><i class="fas fa-pen"></i></a>
-                                        <a href="{{route("adminpetitions.show",["id"=>$petition->id])}}" class="btn btn-info me-1" title="Ver"><i class="fas fa-eye"></i></a>
-                                        <form action="{{route("adminpetitions.delete",["id"=>$petition->id])}}" method="post"onsubmit="return confirm('¿estas seguro de que quieres eliminar la petición?')">
+                                        <a href="{{route("adminpetitions.show",["id"=>$petition->id])}}"
+                                           class="btn btn-info me-1" title="Ver"><i class="fas fa-eye"></i></a>
+                                        <form action="{{route("adminpetitions.delete",["id"=>$petition->id])}}"
+                                              method="post"
+                                              onsubmit="return confirm('¿estas seguro de que quieres eliminar la petición?')">
                                             @csrf
                                             @method('DELETE')
-                                        <button type="submit" class="btn btn-danger ms-1" title="Eliminar" ><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger ms-1" title="Eliminar"><i
+                                                    class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -72,14 +81,14 @@
         </div>
 
         <nav aria-label="Paginación de tabla" class="mt-3">
-{{--            <ul class="pagination pagination-sm justify-content-end">--}}
-{{--                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>--}}
-{{--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--}}
-{{--                <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
-{{--                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>--}}
-{{--            </ul>--}}
-           @if($count>10)
-            {{$petitions->links()}}
+            {{--            <ul class="pagination pagination-sm justify-content-end">--}}
+            {{--                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>--}}
+            {{--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--}}
+            {{--                <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
+            {{--                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>--}}
+            {{--            </ul>--}}
+            @if($count>10)
+                {{$petitions->links()}}
             @endif
         </nav>
 

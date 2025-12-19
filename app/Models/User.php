@@ -47,13 +47,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     function petitions()
     {
         return $this->hasMany(Petition::class);
     }
+
     function signedPetitions()
     {
-        return $this->belongsToMany(Petition::class,"petition_user");
+        return $this->belongsToMany(Petition::class, "petition_user");
     }
 
 }

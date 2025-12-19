@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\File;
 use App\Models\Petition;
+use App\Models\User;
 use Illuminate\Support\Facades\File as FileFacade;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class AdminPetitionsController extends Controller
     {
         $count = Petition::all()->count();
         $petitions = Petition::paginate(10);
-        return view("admin.home", compact("petitions","count"));
+        return view("admin.home", compact("petitions", "count"));
     }
 
     function cambiarEstado($id)
@@ -102,8 +103,8 @@ class AdminPetitionsController extends Controller
             if ((!is_null($request->status)) && ($petition->status != $request->status)) {
                 $petition->status = $request->status;
             }
-            if (!(is_null($request->category))&&($petition->category_id!=$request->category)){
-                $petition->category_id=$request->category;
+            if (!(is_null($request->category)) && ($petition->category_id != $request->category)) {
+                $petition->category_id = $request->category;
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "error",
@@ -174,5 +175,16 @@ class AdminPetitionsController extends Controller
             return back()->withErrors(['image' => 'se ha producido un error a la hora de crear la peticion'])->withInput();;
         }
         return view("admin.home");
+    }
+
+    function search(Request $request)
+    {
+        $petitions = Petition::where("title", "like", "%$request->title%")
+            ->orWhere("description", "like", "%$request->title%")
+            ->paginate(10);
+        $count = Petition::where("title", "like", "%$request->title%")
+            ->orWhere("description", "like", "%$request->title%")
+            ->count();
+        return view("admin.home", compact("count", "petitions"));
     }
 }

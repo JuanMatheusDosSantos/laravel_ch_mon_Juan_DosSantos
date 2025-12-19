@@ -51,6 +51,7 @@ controller(AdminPetitionsController::class)->group(function () {
     Route::delete('admin/peticiones/{id}', 'delete')->name('adminpetitions.delete');
     Route::put('admin/peticiones/{id}', 'update')->name('adminpetitions.update');
     Route::put('admin/peticiones/estado/{id}', 'cambiarEstado')->name('adminpetitions.state');
+    Route::post("admin/petitions/search","search")->name("adminpetitions.search");
 });
 Route::middleware("admin")->
 controller(AdminCategoriesController::class)->group(function () {
@@ -61,6 +62,7 @@ controller(AdminCategoriesController::class)->group(function () {
     Route::post('admin/categories', 'store')->name('admincategories.store');
     Route::delete('admin/categories/{id}', 'delete')->name('admincategories.delete');
     Route::put('admin/categories/{id}', 'update')->name('admincategories.update');
+    Route::post("admin/categories/search","search")->name("admincategories.search");
 });
 Route::middleware("admin")->
 controller(AdminUsersController::class)->group(function () {
@@ -71,5 +73,6 @@ controller(AdminUsersController::class)->group(function () {
     Route::post('admin/users', 'store')->name('adminusers.store');
     Route::delete('admin/users/{id}', 'delete')->name('adminusers.delete');
     Route::put('admin/users/{id}', 'update')->name('adminusers.update');
+    Route::post("admin/users/search","search")->name("adminusers.search");
 });
 require __DIR__ . '/auth.php';

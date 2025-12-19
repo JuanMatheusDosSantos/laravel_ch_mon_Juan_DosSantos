@@ -49,22 +49,22 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-            if (!is_null($user->petitions)){
+        if (!is_null($user->petitions)) {
 
-                Petition::where("user_id",$user)->delete();
+            Petition::where("user_id", $user)->delete();
+        }
+        if ($user->role_id && User::where("role_id", 1)->count() == 1) {
+            return redirect()->route("adminusers.index")->
+            with("alert", "no puedes eliminar este usuario debido a que es el único admin que hay");
+        }
+        if (!is_null($user->signedPetitions)) {
+            $petitionsSigneds = $user->signedPetitions;
+            foreach ($petitionsSigneds as $petitionsSigned) {
+                $petition = Petition::findOrFail($petitionsSigned->id);
+                $petition->signers -= 1;
+                $petitionsSigned->delete();
             }
-            if ($user->role_id&&User::where("role_id",1)->count()==1){
-                return redirect()->route("adminusers.index")->
-                with("alert","no puedes eliminar este usuario debido a que es el único admin que hay");
-            }
-            if (!is_null($user->signedPetitions)){
-                $petitionsSigneds=$user->signedPetitions;
-                foreach ($petitionsSigneds as $petitionsSigned){
-                    $petition=Petition::findOrFail($petitionsSigned->id);
-                    $petition->signers-=1;
-                    $petitionsSigned->delete();
-                }
-            }
+        }
         Auth::logout();
 
         $user->delete();

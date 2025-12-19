@@ -45,7 +45,7 @@
                             <i class="fas fa-save me-1"></i> Actualizar Categoria
                         </button>
 
-                        <a href="{{ route('admin.home') }}" class="btn btn-secondary btn-lg">
+                        <a href="{{ route('admincategories.index') }}" class="btn btn-secondary btn-lg">
                             <i class="fas fa-undo me-1"></i> Cancelar
                         </a>
                     </div>
